@@ -1,0 +1,442 @@
+'__________________________________________________________________________________
+'
+'                          Ovladaè IBIS
+'__________________________________________________________________________________
+'__________________________________________________________________________________
+'
+'                          Bascom 2.0.7.8
+'__________________________________________________________________________________
+'
+'                      * Vlastnosti hotové
+'                      * Podle pøepínaèe 0 - 15 => l800 a z800 - l815 a z815
+'                      *
+'                      *
+'                      *
+'                      *
+'                      *
+'
+'__________________________________________________________________________________
+
+'
+'                      * Vlastnosti chybìjící
+'                      *
+'                      *
+'                      *
+'
+'__________________________________________________________________________________
+'
+'
+'                      konf.: FF FF D9 FE
+'
+'                      XTAL  16MHz  No Bootloader
+'__________________________________________________________________________________
+'
+'
+'   pripojeni  COM               : PORT D.1 (TX)
+'   vstup 1                      : PORT D.2
+'   vstup 2                      : PORT D.3
+'   vstup 3                      : PORT D.4
+'   vstup 4                      : PORT D.5
+'   výstup LED                   : PORT C.7
+'
+'__________________________________________________________________________________
+
+'
+'__________________________________________________________________________________
+
+$regfile = "m328pdef.dat"
+$crystal = 16000000
+$baud = 1200
+
+Config Com1 = Dummy , Synchrone = 0 , Parity = Even , Stopbits = 2 , Databits = 7 , Clockpol = 0
+Config pind.2 = input      'D2
+Config pind.3 = input      'D3
+Config pind.4 = input      'D4
+Config pind.5 = input      'D5
+Config portB.5 = output    'D13
+
+Dim Cyklus as Byte
+Dim Promenna as Byte
+Dim Prepinac as Byte
+
+Open "com1:" For Binary
+
+Set portD.2    'pullup
+Set portd.3    'pullup
+Set portd.4    'pullup
+Set portd.5    'pullup
+
+Do
+
+   Gosub Nacteni_prepinace
+
+   Gosub Vystup
+
+   Wait 2
+
+Loop
+
+End
+
+
+
+
+
+l800:
+Data &h6C, &h38, &h30, &h30, &h0D, &h26
+
+z800:
+Data &h7A, &h38, &h30, &h30, &h0D, &h30
+
+l801:
+Data &h6C, &h38, &h30, &h31, &h0D, &h27
+
+z801:
+Data &h7A, &h38, &h30, &h31, &h0D, &h31
+
+l802:
+Data &h6C, &h38, &h30, &h32, &h0D, &h24
+
+z802:
+Data &h7A, &h38, &h30, &h32, &h0D, &h32
+
+l803:
+Data &h6C, &h38, &h30, &h33, &h0D, &h25
+
+z803:
+Data &h7A, &h38, &h30, &h33, &h0D, &h33
+
+l804:
+Data &h6C, &h38, &h30, &h34, &h0D, &h22
+
+z804:
+Data &h7A, &h38, &h30, &h34, &h0D, &h34
+
+l805:
+Data &h6C, &h38, &h30, &h35, &h0D, &h23
+
+z805:
+Data &h7A, &h38, &h30, &h35, &h0D, &h35
+
+l806:
+Data &h6C, &h38, &h30, &h36, &h0D, &h20
+
+z806:
+Data &h7A, &h38, &h30, &h36, &h0D, &h36
+
+l807:
+Data &h6C, &h38, &h30, &h37, &h0D, &h21
+
+z807:
+Data &h7A, &h38, &h30, &h37, &h0D, &h37
+
+l808:
+Data &h6C, &h38, &h30, &h38, &h0D, &h2E
+
+z808:
+Data &h7A, &h38, &h30, &h38, &h0D, &h38
+
+l809:
+Data &h6C, &h38, &h30, &h39, &h0D, &h2F
+
+z809:
+Data &h7A, &h38, &h30, &h39, &h0D, &h39
+
+l810:
+Data &h6C, &h38, &h31, &h30, &h0D, &h27
+
+z810:
+Data &h7A, &h38, &h31, &h30, &h0D, &h31
+
+l811:
+Data &h6C, &h38, &h31, &h31, &h0D, &h26
+
+z811:
+Data &h7A, &h38, &h31, &h31, &h0D, &h30
+
+l812:
+Data &h6C, &h38, &h31, &h32, &h0D, &h25
+
+z812:
+Data &h7A, &h38, &h31, &h32, &h0D, &h33
+
+l813:
+Data &h6C, &h38, &h31, &h33, &h0D, &h24
+
+z813:
+Data &h7A, &h38, &h31, &h33, &h0D, &h32
+
+l814:
+Data &h6C, &h38, &h31, &h34, &h0D, &h23
+
+z814:
+Data &h7A, &h38, &h31, &h34, &h0D, &h35
+
+l815:
+Data &h6C, &h38, &h31, &h35, &h0D, &h22
+
+z815:
+Data &h7A, &h38, &h31, &h35, &h0D, &h34
+
+
+
+
+Nacteni_prepinace:
+
+   Prepinac = 0
+
+   If pind.2 = 0 then
+      Prepinac = prepinac + 1
+      Gosub blik
+      Waitms 500
+   End If
+
+   If pind.3 = 0 then
+      Prepinac = prepinac + 2
+      Gosub blik
+      Gosub blik
+      Waitms 500
+   End If
+
+   If pind.4 = 0 then
+      Prepinac = prepinac + 4
+      Gosub blik
+      Gosub blik
+      Gosub blik
+      Gosub blik
+      Waitms 500
+   End If
+
+   If pind.5 = 0 then
+      Prepinac = prepinac + 8
+      Gosub blik
+      Gosub blik
+      Gosub blik
+      Gosub blik
+      Gosub blik
+      Gosub blik
+      Gosub blik
+      Gosub blik
+      Waitms 500
+   End If
+
+Return
+
+
+
+
+Blik:
+
+   Set portB.5
+   Waitms 150
+   Reset portB.5
+   Waitms 150
+
+Return
+
+
+
+
+Vystup:
+
+   Select Case Prepinac
+
+      Case 0:  Restore l800
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z800
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 1:  Restore l801
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z801
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 2:  Restore l802
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z802
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 3:  Restore l803
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z803
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 4:  Restore l804
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z804
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 5:  Restore l805
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z805
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 6:  Restore l806
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z806
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 7:  Restore l807
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z807
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 8:  Restore l808
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z808
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 9:  Restore l809
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z809
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 10:  Restore l810
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z810
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 11:  Restore l811
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z811
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 12:  Restore l812
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z812
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 13:  Restore l813
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z813
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 14:  Restore l814
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z814
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+      Case 15:  Restore l815
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+               Restore z815
+               For cyklus = 1 to 6
+                  Read promenna
+                  Printbin promenna
+               Next
+
+
+   End Select
+
+Return
+
+
+

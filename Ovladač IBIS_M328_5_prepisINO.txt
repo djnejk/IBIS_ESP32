@@ -1,0 +1,139 @@
+//__________________________________________________________________________________
+//                          Ovladač IBIS
+//__________________________________________________________________________________
+//                          Arduino Nano
+//__________________________________________________________________________________
+
+#include <avr/pgmspace.h>
+
+#define LED_PIN 13
+
+#define INPUT1_PIN 2
+#define INPUT2_PIN 3
+#define INPUT3_PIN 4
+#define INPUT4_PIN 5
+
+byte cyklus;
+byte promenna;
+byte prepinac;
+
+// Data arrays in program memory (flash)
+const byte l800[] PROGMEM = {0x6C, 0x38, 0x30, 0x30, 0x0D, 0x26};
+const byte z800[] PROGMEM = {0x7A, 0x38, 0x30, 0x30, 0x0D, 0x30};
+const byte l801[] PROGMEM = {0x6C, 0x38, 0x30, 0x31, 0x0D, 0x27};
+const byte z801[] PROGMEM = {0x7A, 0x38, 0x30, 0x31, 0x0D, 0x31};
+const byte l802[] PROGMEM = {0x6C, 0x38, 0x30, 0x32, 0x0D, 0x24};
+const byte z802[] PROGMEM = {0x7A, 0x38, 0x30, 0x32, 0x0D, 0x32};
+const byte l803[] PROGMEM = {0x6C, 0x38, 0x30, 0x33, 0x0D, 0x25};
+const byte z803[] PROGMEM = {0x7A, 0x38, 0x30, 0x33, 0x0D, 0x33};
+const byte l804[] PROGMEM = {0x6C, 0x38, 0x30, 0x34, 0x0D, 0x22};
+const byte z804[] PROGMEM = {0x7A, 0x38, 0x30, 0x34, 0x0D, 0x34};
+const byte l805[] PROGMEM = {0x6C, 0x38, 0x30, 0x35, 0x0D, 0x23};
+const byte z805[] PROGMEM = {0x7A, 0x38, 0x30, 0x35, 0x0D, 0x35};
+const byte l806[] PROGMEM = {0x6C, 0x38, 0x30, 0x36, 0x0D, 0x20};
+const byte z806[] PROGMEM = {0x7A, 0x38, 0x30, 0x36, 0x0D, 0x36};
+const byte l807[] PROGMEM = {0x6C, 0x38, 0x30, 0x37, 0x0D, 0x21};
+const byte z807[] PROGMEM = {0x7A, 0x38, 0x30, 0x37, 0x0D, 0x37};
+const byte l808[] PROGMEM = {0x6C, 0x38, 0x30, 0x38, 0x0D, 0x2E};
+const byte z808[] PROGMEM = {0x7A, 0x38, 0x30, 0x38, 0x0D, 0x38};
+const byte l809[] PROGMEM = {0x6C, 0x38, 0x30, 0x39, 0x0D, 0x2F};
+const byte z809[] PROGMEM = {0x7A, 0x38, 0x30, 0x39, 0x0D, 0x39};
+const byte l810[] PROGMEM = {0x6C, 0x38, 0x31, 0x30, 0x0D, 0x27};
+const byte z810[] PROGMEM = {0x7A, 0x38, 0x31, 0x30, 0x0D, 0x31};
+const byte l811[] PROGMEM = {0x6C, 0x38, 0x31, 0x31, 0x0D, 0x26};
+const byte z811[] PROGMEM = {0x7A, 0x38, 0x31, 0x31, 0x0D, 0x30};
+const byte l812[] PROGMEM = {0x6C, 0x38, 0x31, 0x32, 0x0D, 0x25};
+const byte z812[] PROGMEM = {0x7A, 0x38, 0x31, 0x32, 0x0D, 0x33};
+const byte l813[] PROGMEM = {0x6C, 0x38, 0x31, 0x33, 0x0D, 0x24};
+const byte z813[] PROGMEM = {0x7A, 0x38, 0x31, 0x33, 0x0D, 0x32};
+const byte l814[] PROGMEM = {0x6C, 0x38, 0x31, 0x34, 0x0D, 0x23};
+const byte z814[] PROGMEM = {0x7A, 0x38, 0x31, 0x34, 0x0D, 0x35};
+const byte l815[] PROGMEM = {0x6C, 0x38, 0x31, 0x35, 0x0D, 0x22};
+const byte z815[] PROGMEM = {0x7A, 0x38, 0x31, 0x35, 0x0D, 0x34};
+
+void setup() {
+  Serial.begin(1200, SERIAL_7E2);
+  
+  pinMode(INPUT1_PIN, INPUT_PULLUP);
+  pinMode(INPUT2_PIN, INPUT_PULLUP);
+  pinMode(INPUT3_PIN, INPUT_PULLUP);
+  pinMode(INPUT4_PIN, INPUT_PULLUP);
+  
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  nacteni_prepinace();
+  vystup();
+  delay(2000);
+}
+
+void nacteni_prepinace() {
+  prepinac = 0;
+
+  if (digitalRead(INPUT1_PIN) == LOW) {
+    prepinac += 1;
+    blik();
+    delay(500);
+  }
+
+  if (digitalRead(INPUT2_PIN) == LOW) {
+    prepinac += 2;
+    blik();
+    blik();
+    delay(500);
+  }
+
+  if (digitalRead(INPUT3_PIN) == LOW) {
+    prepinac += 4;
+    for (int i = 0; i < 4; i++) blik();
+    delay(500);
+  }
+
+  if (digitalRead(INPUT4_PIN) == LOW) {
+    prepinac += 8;
+    for (int i = 0; i < 8; i++) blik();
+    delay(500);
+  }
+}
+
+void blik() {
+  digitalWrite(LED_PIN, HIGH);
+  delay(150);
+  digitalWrite(LED_PIN, LOW);
+  delay(150);
+}
+
+void vystup() {
+  const byte* data_l;
+  const byte* data_z;
+
+  switch (prepinac) {
+    case 0: data_l = l800; data_z = z800; break;
+    case 1: data_l = l801; data_z = z801; break;
+    case 2: data_l = l802; data_z = z802; break;
+    case 3: data_l = l803; data_z = z803; break;
+    case 4: data_l = l804; data_z = z804; break;
+    case 5: data_l = l805; data_z = z805; break;
+    case 6: data_l = l806; data_z = z806; break;
+    case 7: data_l = l807; data_z = z807; break;
+    case 8: data_l = l808; data_z = z808; break;
+    case 9: data_l = l809; data_z = z809; break;
+    case 10: data_l = l810; data_z = z810; break;
+    case 11: data_l = l811; data_z = z811; break;
+    case 12: data_l = l812; data_z = z812; break;
+    case 13: data_l = l813; data_z = z813; break;
+    case 14: data_l = l814; data_z = z814; break;
+    case 15: data_l = l815; data_z = z815; break;
+  }
+
+  for (cyklus = 0; cyklus < 6; cyklus++) {
+    promenna = pgm_read_byte_near(data_l + cyklus);
+    Serial.write(promenna);
+  }
+
+  for (cyklus = 0; cyklus < 6; cyklus++) {
+    promenna = pgm_read_byte_near(data_z + cyklus);
+    Serial.write(promenna);
+  }
+}

@@ -1,0 +1,251 @@
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cstdint>
+#include <windows.h>
+
+const std::string regfile = "m328pdef.dat";
+const uint32_t crystal = 16000000;
+const uint32_t baud = 1200;
+
+// Config Com1 = Dummy , Synchrone = 0 , Parity = Even , Stopbits = 2 , Databits = 7 , Clockpol = 0
+// Config pind.2 = input      'D2
+// Config pind.3 = input      'D3
+// Config pind.4 = input      'D4
+// Config pind.5 = input      'D5
+// Config portB.5 = output    'D13
+
+uint8_t Cyklus;
+uint8_t Promenna;
+uint8_t Prepinac;
+
+// Open "com1:" For Binary
+
+// Set portD.2    'pullup
+// Set portd.3    'pullup
+// Set portd.4    'pullup
+// Set portd.5    'pullup
+
+std::vector<uint8_t> l800 = {0x6C, 0x38, 0x30, 0x30, 0x0D, 0x26};
+std::vector<uint8_t> z800 = {0x7A, 0x38, 0x30, 0x30, 0x0D, 0x30};
+std::vector<uint8_t> l801 = {0x6C, 0x38, 0x30, 0x31, 0x0D, 0x27};
+std::vector<uint8_t> z801 = {0x7A, 0x38, 0x30, 0x31, 0x0D, 0x31};
+std::vector<uint8_t> l802 = {0x6C, 0x38, 0x30, 0x32, 0x0D, 0x24};
+std::vector<uint8_t> z802 = {0x7A, 0x38, 0x30, 0x32, 0x0D, 0x32};
+std::vector<uint8_t> l803 = {0x6C, 0x38, 0x30, 0x33, 0x0D, 0x25};
+std::vector<uint8_t> z803 = {0x7A, 0x38, 0x30, 0x33, 0x0D, 0x33};
+std::vector<uint8_t> l804 = {0x6C, 0x38, 0x30, 0x34, 0x0D, 0x22};
+std::vector<uint8_t> z804 = {0x7A, 0x38, 0x30, 0x34, 0x0D, 0x34};
+std::vector<uint8_t> l805 = {0x6C, 0x38, 0x30, 0x35, 0x0D, 0x23};
+std::vector<uint8_t> z805 = {0x7A, 0x38, 0x30, 0x35, 0x0D, 0x35};
+std::vector<uint8_t> l806 = {0x6C, 0x38, 0x30, 0x36, 0x0D, 0x20};
+std::vector<uint8_t> z806 = {0x7A, 0x38, 0x30, 0x36, 0x0D, 0x36};
+std::vector<uint8_t> l807 = {0x6C, 0x38, 0x30, 0x37, 0x0D, 0x21};
+std::vector<uint8_t> z807 = {0x7A, 0x38, 0x30, 0x37, 0x0D, 0x37};
+std::vector<uint8_t> l808 = {0x6C, 0x38, 0x30, 0x38, 0x0D, 0x2E};
+std::vector<uint8_t> z808 = {0x7A, 0x38, 0x30, 0x38, 0x0D, 0x38};
+std::vector<uint8_t> l809 = {0x6C, 0x38, 0x30, 0x39, 0x0D, 0x2F};
+std::vector<uint8_t> z809 = {0x7A, 0x38, 0x30, 0x39, 0x0D, 0x39};
+std::vector<uint8_t> l810 = {0x6C, 0x38, 0x31, 0x30, 0x0D, 0x27};
+std::vector<uint8_t> z810 = {0x7A, 0x38, 0x31, 0x30, 0x0D, 0x31};
+std::vector<uint8_t> l811 = {0x6C, 0x38, 0x31, 0x31, 0x0D, 0x26};
+std::vector<uint8_t> z811 = {0x7A, 0x38, 0x31, 0x31, 0x0D, 0x30};
+std::vector<uint8_t> l812 = {0x6C, 0x38, 0x31, 0x32, 0x0D, 0x25};
+std::vector<uint8_t> z812 = {0x7A, 0x38, 0x31, 0x32, 0x0D, 0x33};
+std::vector<uint8_t> l813 = {0x6C, 0x38, 0x31, 0x33, 0x0D, 0x24};
+std::vector<uint8_t> z813 = {0x7A, 0x38, 0x31, 0x33, 0x0D, 0x32};
+std::vector<uint8_t> l814 = {0x6C, 0x38, 0x31, 0x34, 0x0D, 0x23};
+std::vector<uint8_t> z814 = {0x7A, 0x38, 0x31, 0x34, 0x0D, 0x35};
+std::vector<uint8_t> l815 = {0x6C, 0x38, 0x31, 0x35, 0x0D, 0x22};
+std::vector<uint8_t> z815 = {0x7A, 0x38, 0x31, 0x35, 0x0D, 0x34};
+
+void Nacteni_prepinace() {
+    Prepinac = 0;
+
+    // If pind.2 = 0 then
+    //    Prepinac = prepinac + 1
+    //    Gosub blik
+    //    Waitms 500
+    // End If
+
+    // If pind.3 = 0 then
+    //    Prepinac = prepinac + 2
+    //    Gosub blik
+    //    Gosub blik
+    //    Waitms 500
+    // End If
+
+    // If pind.4 = 0 then
+    //    Prepinac = prepinac + 4
+    //    Gosub blik
+    //    Gosub blik
+    //    Gosub blik
+    //    Gosub blik
+    //    Waitms 500
+    // End If
+
+    // If pind.5 = 0 then
+    //    Prepinac = prepinac + 8
+    //    Gosub blik
+    //    Gosub blik
+    //    Gosub blik
+    //    Gosub blik
+    //    Gosub blik
+    //    Gosub blik
+    //    Gosub blik
+    //    Gosub blik
+    //    Waitms 500
+    // End If
+}
+
+void Blik() {
+    // Set portB.5
+    // Waitms 150
+    // Reset portB.5
+    // Waitms 150
+}
+
+void Vystup() {
+    switch (Prepinac) {
+        case 0:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l800[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z800[i];
+            }
+            break;
+        case 1:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l801[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z801[i];
+            }
+            break;
+        case 2:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l802[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z802[i];
+            }
+            break;
+        case 3:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l803[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z803[i];
+            }
+            break;
+        case 4:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l804[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z804[i];
+            }
+            break;
+        case 5:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l805[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z805[i];
+            }
+            break;
+        case 6:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l806[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z806[i];
+            }
+            break;
+        case 7:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l807[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z807[i];
+            }
+            break;
+        case 8:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l808[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z808[i];
+            }
+            break;
+        case 9:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l809[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z809[i];
+            }
+            break;
+        case 10:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l810[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z810[i];
+            }
+            break;
+        case 11:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l811[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z811[i];
+            }
+            break;
+        case 12:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l812[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z812[i];
+            }
+            break;
+        case 13:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l813[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z813[i];
+            }
+            break;
+        case 14:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l814[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z814[i];
+            }
+            break;
+        case 15:
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << l815[i];
+            }
+            for (uint8_t i = 0; i < 6; i++) {
+                std::cout << z815[i];
+            }
+            break;
+    }
+}
+
+int main() {
+    do {
+        Nacteni_prepinace();
+        Vystup();
+        Sleep(2000); // Wait 2
+    } while (true);
+
+    return 0;
+}
+
