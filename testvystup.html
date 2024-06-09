@@ -1,0 +1,224 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        table, th, td { border: 1px solid black; }
+        th, td { padding: 10px; text-align: left; }
+    </style>
+    <script>
+        function togglePassword() {
+            var x = document.getElementById('passwordInput');
+            if (x.type === 'password') {
+                x.type = 'text';
+            } else {
+                x.type = 'password';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Nastavení WIFI</h1>
+    test
+    <form action="/save" method="POST">
+        ssid_sta: <input type="text" name="ssid_sta" value="test"><br>
+        password_sta: <input type="password" id="passwordInput" name="password_sta" value="test">
+        <button type="button" onclick="togglePassword()">Show/Hide</button><br>
+        <input type="submit" value="Uložit">
+    </form>
+    <h1>Pozice přepínače a odesílané data</h1>
+    <form action="/save_positions" method="POST">
+        <table>
+            <tr>
+                <th>Pozice</th>
+                <th>a</th>
+                <th>Pauza</th>
+                <th>b</th>
+                <th>Pauza</th>
+                <th>c</th>
+                <th>Pauza</th>
+                <th>d</th>
+                <th>Pauza</th>
+            </tr>
+            <tr>
+                <td>Pozice 0</td>
+                <td><input type="text" name="Pozice0a" value="test"></td>
+                <td><input type="number" name="Pozice0aPauza" value="69"></td>
+                <td><input type="text" name="Pozice0b" value="test"></td>
+                <td><input type="number" name="Pozice0bPauza" value="69"></td>
+                <td><input type="text" name="Pozice0c" value="test"></td>
+                <td><input type="number" name="Pozice0cPauza" value="69"></td>
+                <td><input type="text" name="Pozice0d" value="test"></td>
+                <td><input type="number" name="Pozice0dPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice 1</td>
+                <td><input type="text" name="Pozice1a" value="test"></td>
+                <td><input type="number" name="Pozice1aPauza" value="69"></td>
+                <td><input type="text" name="Pozice1b" value="test"></td>
+                <td><input type="number" name="Pozice1bPauza" value="69"></td>
+                <td><input type="text" name="Pozice1c" value="test"></td>
+                <td><input type="number" name="Pozice1cPauza" value="69"></td>
+                <td><input type="text" name="Pozice1d" value="test"></td>
+                <td><input type="number" name="Pozice1dPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice 2</td>
+                <td><input type="text" name="Pozice2a" value="test"></td>
+                <td><input type="number" name="Pozice2aPauza" value="69"></td>
+                <td><input type="text" name="Pozice2b" value="test"></td>
+                <td><input type="number" name="Pozice2bPauza" value="69"></td>
+                <td><input type="text" name="Pozice2c" value="test"></td>
+                <td><input type="number" name="Pozice2cPauza" value="69"></td>
+                <td><input type="text" name="Pozice2d" value="test"></td>
+                <td><input type="number" name="Pozice2dPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice 3</td>
+                <td><input type="text" name="Pozice3a" value="test"></td>
+                <td><input type="number" name="Pozice3aPauza" value="69"></td>
+                <td><input type="text" name="Pozice3b" value="test"></td>
+                <td><input type="number" name="Pozice3bPauza" value="69"></td>
+                <td><input type="text" name="Pozice3c" value="test"></td>
+                <td><input type="number" name="Pozice3cPauza" value="69"></td>
+                <td><input type="text" name="Pozice3d" value="test"></td>
+                <td><input type="number" name="Pozice3dPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice 4</td>
+                <td><input type="text" name="Pozice4a" value="test"></td>
+                <td><input type="number" name="Pozice4aPauza" value="69"></td>
+                <td><input type="text" name="Pozice4b" value="test"></td>
+                <td><input type="number" name="Pozice4bPauza" value="69"></td>
+                <td><input type="text" name="Pozice4c" value="test"></td>
+                <td><input type="number" name="Pozice4cPauza" value="69"></td>
+                <td><input type="text" name="Pozice4d" value="test"></td>
+                <td><input type="number" name="Pozice4dPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice 5</td>
+                <td><input type="text" name="Pozice5a" value="test"></td>
+                <td><input type="number" name="Pozice5aPauza" value="69"></td>
+                <td><input type="text" name="Pozice5b" value="test"></td>
+                <td><input type="number" name="Pozice5bPauza" value="69"></td>
+                <td><input type="text" name="Pozice5c" value="test"></td>
+                <td><input type="number" name="Pozice5cPauza" value="69"></td>
+                <td><input type="text" name="Pozice5d" value="test"></td>
+                <td><input type="number" name="Pozice5dPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice 6</td>
+                <td><input type="text" name="Pozice6a" value="test"></td>
+                <td><input type="number" name="Pozice6aPauza" value="69"></td>
+                <td><input type="text" name="Pozice6b" value="test"></td>
+                <td><input type="number" name="Pozice6bPauza" value="69"></td>
+                <td><input type="text" name="Pozice6c" value="test"></td>
+                <td><input type="number" name="Pozice6cPauza" value="69"></td>
+                <td><input type="text" name="Pozice6d" value="test"></td>
+                <td><input type="number" name="Pozice6dPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice 7</td>
+                <td><input type="text" name="Pozice7a" value="test"></td>
+                <td><input type="number" name="Pozice7aPauza" value="69"></td>
+                <td><input type="text" name="Pozice7b" value="test"></td>
+                <td><input type="number" name="Pozice7bPauza" value="69"></td>
+                <td><input type="text" name="Pozice7c" value="test"></td>
+                <td><input type="number" name="Pozice7cPauza" value="69"></td>
+                <td><input type="text" name="Pozice7d" value="test"></td>
+                <td><input type="number" name="Pozice7dPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice 8</td>
+                <td><input type="text" name="Pozice8a" value="test"></td>
+                <td><input type="number" name="Pozice8aPauza" value="69"></td>
+                <td><input type="text" name="Pozice8b" value="test"></td>
+                <td><input type="number" name="Pozice8bPauza" value="69"></td>
+                <td><input type="text" name="Pozice8c" value="test"></td>
+                <td><input type="number" name="Pozice8cPauza" value="69"></td>
+                <td><input type="text" name="Pozice8d" value="test"></td>
+                <td><input type="number" name="Pozice8dPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice 9</td>
+                <td><input type="text" name="Pozice9a" value="test"></td>
+                <td><input type="number" name="Pozice9aPauza" value="69"></td>
+                <td><input type="text" name="Pozice9b" value="test"></td>
+                <td><input type="number" name="Pozice9bPauza" value="69"></td>
+                <td><input type="text" name="Pozice9c" value="test"></td>
+                <td><input type="number" name="Pozice9cPauza" value="69"></td>
+                <td><input type="text" name="Pozice9d" value="test"></td>
+                <td><input type="number" name="Pozice9dPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice A</td>
+                <td><input type="text" name="PoziceAa" value="test"></td>
+                <td><input type="number" name="PoziceAaPauza" value="69"></td>
+                <td><input type="text" name="PoziceAb" value="test"></td>
+                <td><input type="number" name="PoziceAbPauza" value="69"></td>
+                <td><input type="text" name="PoziceAc" value="test"></td>
+                <td><input type="number" name="PoziceAcPauza" value="69"></td>
+                <td><input type="text" name="PoziceAd" value="test"></td>
+                <td><input type="number" name="PoziceAdPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice B</td>
+                <td><input type="text" name="PoziceBa" value="test"></td>
+                <td><input type="number" name="PoziceBaPauza" value="69"></td>
+                <td><input type="text" name="PoziceBb" value="test"></td>
+                <td><input type="number" name="PoziceBbPauza" value="69"></td>
+                <td><input type="text" name="PoziceBc" value="test"></td>
+                <td><input type="number" name="PoziceBcPauza" value="69"></td>
+                <td><input type="text" name="PoziceBd" value="test"></td>
+                <td><input type="number" name="PoziceBdPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice C</td>
+                <td><input type="text" name="PoziceCa" value="test"></td>
+                <td><input type="number" name="PoziceCaPauza" value="69"></td>
+                <td><input type="text" name="PoziceCb" value="test"></td>
+                <td><input type="number" name="PoziceCbPauza" value="69"></td>
+                <td><input type="text" name="PoziceCc" value="test"></td>
+                <td><input type="number" name="PoziceCcPauza" value="69"></td>
+                <td><input type="text" name="PoziceCd" value="test"></td>
+                <td><input type="number" name="PoziceCdPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice D</td>
+                <td><input type="text" name="PoziceDa" value="test"></td>
+                <td><input type="number" name="PoziceDaPauza" value="69"></td>
+                <td><input type="text" name="PoziceDb" value="test"></td>
+                <td><input type="number" name="PoziceDbPauza" value="69"></td>
+                <td><input type="text" name="PoziceDc" value="test"></td>
+                <td><input type="number" name="PoziceDcPauza" value="69"></td>
+                <td><input type="text" name="PoziceDd" value="test"></td>
+                <td><input type="number" name="PoziceDdPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice E</td>
+                <td><input type="text" name="PoziceEa" value="test"></td>
+                <td><input type="number" name="PoziceEaPauza" value="69"></td>
+                <td><input type="text" name="PoziceEb" value="test"></td>
+                <td><input type="number" name="PoziceEbPauza" value="69"></td>
+                <td><input type="text" name="PoziceEc" value="test"></td>
+                <td><input type="number" name="PoziceEcPauza" value="69"></td>
+                <td><input type="text" name="PoziceEd" value="test"></td>
+                <td><input type="number" name="PoziceEdPauza" value="69"></td>
+            </tr>
+            <tr>
+                <td>Pozice F</td>
+                <td><input type="text" name="PoziceFa" value="test"></td>
+                <td><input type="number" name="PoziceFaPauza" value="69"></td>
+                <td><input type="text" name="PoziceFb" value="test"></td>
+                <td><input type="number" name="PoziceFbPauza" value="69"></td>
+                <td><input type="text" name="PoziceFc" value="test"></td>
+                <td><input type="number" name="PoziceFcPauza" value="69"></td>
+                <td><input type="text" name="PoziceFd" value="test"></td>
+                <td><input type="number" name="PoziceFdPauza" value="69"></td>
+            </tr>
+        </table>
+        <p>Pro nastavení zobrazování hodin použij kód: <b>hOdInY</b></p>
+        <input type="submit" value="Uložit">
+    </form>
+</body>
+</html>
