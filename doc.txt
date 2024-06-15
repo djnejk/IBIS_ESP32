@@ -1,0 +1,559 @@
+PROGRAM   gBUSE0  
+
+Úvod
+Program gBUSE0 slouží k prohlížení, úpravám a vytváření nových databází vnějších panelů.
+Program zobrazuje panel, který simuluje činnosti skutečného panelu, takže je na něm možné sledovat, jak bude text vypadat ve skutečnosti  - a to nejen v režimu prohlížení hotové databáze, ale i v průběhu jeho editace a vytváření.      
+
+
+Jak pracovat s programem
+Existují v podstatě tyto způsoby použití programu:
+•	prohlížení již existující databáze panelu
+•	úpravy v již existující databázi panelu
+•	vytvoření zcela nové databáze panelu
+•	vytváření a úpravy textů pro BS100 resp. BS230 (tzv.ekvivalentů)
+
+
+
+Prohlížení již existující databáze panelu
+Po spuštění programu jsme automaticky v režimu prohlížení (viz prohlížeč databáze panelu). Pomocí  menu Soubor/Otevřít  načteme soubor  *.hex  obsahující databázi panelu. Po jeho načtení se převezme ze souboru konfigurace panelu a dojde k zobrazení takového panelu, pro jaký je databáze určena (rozměry,...). Podle toho, zda byl panel konfigurován jako kombinovaný nebo jednoúčelový je potom možno v dolní části okna pracovat s ovládacími prvky ve skupinách LINKA a CÍL resp. i ZASTÁVKA nebo pouze v některé z nich 
+Po načtení databáze panelu se vždy prohlížeč nastavuje na linku, cíl resp. zastávku s nejnižším číslem, které v databázi existuje. Jelikož po načtení je vždy zaškrtnuto přepínací pole ”jen existující” (oznamující režim prohlížení pouze přes existující linky/cíle/zastávky), můžeme si postupným klepáním na horní tlačítko v rámci dvojtlačítka prohlédnout všechny linky/cíle/zastávky v databázi. Také můžeme klepnutím na tlačítko v pravé části zadávacího pole zobrazit výčet čísel linek/cílů/zastávek existujících v databázi.  Klepnutím na vybrané číslo v rámci tohoto výčtu dojde rovněž k jeho zobrazení na panelu. Pokud přepínací pole ”jen existující” není zaškrtnuto, pak se při stisku některého tlačítka na dvojtlačítku zvyšuje či snižuje číslo vždy o jedničku. Navíc je možno v tomto režimu zapsat požadované číslo přímo do zadávacího pole a po stisku klávesy Enter bude příslušný nápis zobrazen na panelu (Když neexistuje, bude zobrazeno upozornění) . 
+
+Úpravy v existující databázi panelu
+Pokud při prohlížení databáze panelu zjistíme, že je nutno některý text linky/cíle/zastávky změnit či nahradit jiným (či pouze upravit jeho velikost, umístění apod.), vyvoláme pomocí menu Nástroje/Editor cílů  (resp. Editor linek či Editor zastávek) okno příslušného editoru. (Příslušný editor lze vyvolat i pomocí místního roletového menu vyvolaného pravým tlačítkem myši nad skupinou ovládacích prvků v prohlížeči.) Při otevření okna editoru bude již vyplněno pole pro číslo cíle/linky/zastávky a v editačním poli bude text cíle/linky/zastávky (resp. v obou editačních polích v případě dvouřádkového textu). Nyní máme možnost jakýmkoliv způsobem text upravovat. Například pouze opravíme překlep v textu či změníme text. Pomocí ovládacích tlačítek můžeme změnit zobrazení na inverzní resp. posunovat s textem v rámci řádku apod. Stiskem tlačítka ULOŽ dojde k uložení provedených změn do databáze panelu. Po zavření editoru (pomocí menu Zavřít editor nebo pomocí zavíracího tlačítka v pravém horním rohu okna nebo pouhým klepnutím myší mimo pole editoru - do pole prohlížeče)  můžeme pokračovat v prohlížení databáze. Na závěr úprav je nezbytné uložit data do souboru - menu Soubor/Uložit nebo Soubor/Uložit jako.
+
+	
+ 
+Samozřejmě je možné v rámci editoru linek/cílů/zastávek provést i daleko větší změny:
+
+Náhrada textu za jiný.
+Po vyvolání editoru cílů/linek/zastávek stiskneme tlačítko NOVÝ CÍL  (resp. NOVÁ LINKA/ NOVÁ ZASTÁVKA) . Tím se vymaže text i číslo a zapne se autoformát. Nejvhodnější je ihned si zpět zapsat číslo přepisovaného cíle/linky/zastávky a potom vyplnit jeho nový text. Po stisku tlačítka ULOŽ budeme upozorněni, že cíl/linka/zastávka s tímto číslem již existuje. Jelikož ho však změnit chceme, potvrdíme jeho přepsání.
+
+Přidání  nového  cíle/linky/zastávky.
+Postup je zcela shodný, vyvoláme editor cílů/linek/zastávek, tlačítkem NOVÝ CÍL  (resp. NOVÁ LINKA/NOVÁ ZASTÁVKA) vymažeme stávající informace zobrazované v editoru a zadáme nový text a přidělíme mu nové číslo. Nové číslo nesmí v databázi ještě existovat, proto je dobré - před vyvoláním editoru za účelem jeho vytvoření - se předem přesvědčit, že toto číslo v databázi skutečně není.
+
+Uložení upravené databáze panelu.
+Na závěr všech úprav provedeme pomocí menu Soubor/Uložit uložení upravené databáze panelu do původního souboru, čímž dojde k přepsání původních dat. Pokud chceme soubor výchozí databáze zachovat  v původním stavu, použijeme menu Soubor/Uložit jako a uložíme upravenou databázi do jiného (např. nového) souboru.
+
+Vytvoření nové databáze panelu
+Vytvořit novou databázi je možné dvěma způsoby.
+Pokud se jedná o novou databázi do existujícího panelu, tedy vytvoření nových nápisů, potom je cesta jednodušší. Otevřeme stávající databázi (menu Soubor/Otevřít), V menu např. editoru cílů pomocí menu Cíle/Vymazat všechny cíle vymažeme současné nápisy a vytvoříme jiné. Tohoto postupu však lze využít pouze tehdy, když všechny konfigurační parametry panelu, jak jsou nastaveny, se nemění. Pokud se mění, je nutno je v okně Konfigurace (menu Nástroje/Konfigurace) upravit nebo vytvářet databázi panelu zcela novou. 
+Zcela novou databázi panelu vytváříme pomocí menu Soubor/Nový. Tato volba jednak maže všechna předcházející data a ihned aktivuje editor fontů. Jestliže již byla nějaká databáze do programu gBUSE0 otevřena, nabízí editor fontů použití stejných fontů jako používala předchozí databáze. Pokud žádná doposud načtena nebyla (a rovněž pokud chceme použít fonty jiné), je potřeba pomocí menu Fonty/Načíst načíst fonty ze souboru. Jakmile zavřeme okno editoru fontů (které bylo aktivováno z menu Soubor/Nový), aktivuje se dialogové okno Konfigurace. Zde se nastavuje velikost a chování panelu. Je nutno projít jednotlivé záložky a nastavit, případně jen překontrolovat,  jednotlivé parametry (verzi FW, typ zobrazení, rozměry, předvolby, povely IBIS, ....) - blíže viz Konfigurace. V zadávacím poli “Verze databáze“ je vhodné vyplnit označení verze nově vytvářené databáze.     
+Vyvoláním editoru cílů nebo editoru linek resp. i editoru zastávek pak vytvoříme příslušné obrazy textů do databáze panelu. Pomocí editoru cílů/linek/zastávek lze obrazy nápisů nejen vytvářet ručně, nýbrž je možné obsah nápisů také načíst z textového souboru a potom prohlédnout, co vytvořil autoformát a případně editací některé poopravit. Je možné je načíst také z již hotové databáze panelu. Toho lze s výhodou využít například tak, že nápisy linek vytvoříme při tvorbě databáze pro zadní panel, do předního a bočního kombinovaného panelu je z databáze zadního pouze načteme. Tím máme zajištěno, že budou všude úplně shodné. (Předpokladem je, že všechny panely budou rovněž obsahovat stejný repertoár fontů - jinak by se po načtení např. databáze z jiného panelu nemuselo na některých kódech nic zobrazit - např. piktogram. Nutností jsou samozřejmě stejné rozměry pole linky ve všech panelech.)   
+Na závěr opět pomocí menu Soubor/Uložit jako uložíme vytvořenou databázi do souboru.
+
+Poznámka:
+Je vhodné pomocí menu Nástroje/Konfigurace si okno Konfigurace vyvolat vždy na konci modifikace dat v databázi a aniž bychom měnili nastavení parametrů, pouze změnit označení  verze databáze
+	.
+ 
+Vytváření a úpravy textů pro BS100 
+S pomocí programu gBUSE0 je také možno vytvářet texty pro palubní počítač BS100 (tzv. dvanáctimístné ekvivalenty = nápisy na BS100 pro řidiče, ekvivalentní nápisům na panelu). 
+Nejprve je nutno vytvořit databázi(-e) do panelu(-ů) a uložit ji(je) do souboru(-ů). Pro vytváření textů pro BS100 je nevhodnější použít "jako vzor" přední panel (panel1.hex).
+
+Postup:
+1.	Spustíme program gBUSE0. V menu  Nástroje/Nastavení označíme ve skupině Ekvivalenty  možnost  BS100.  Jestliže je potřeba  speciální kódování národních znaků, vybereme kódovací tabulku BS100  (použitím tlačítka  Procházet…).  Pro češtinu a slovenštinu to nutné není, jedná se o národní znaky jiných jazyků. Nastavení potvrdíme tlačítkem NASTAV.
+2.	Otevřeme soubor s databází předního panelu (menu Soubor/Otevřít).
+3.	Otevřeme editor cílů. V jeho spodní části se nachází navíc editační okénko, ve kterém se bude objevovat text odvozený z nápisu  na panelu. Tento text obsahuje maximálně prvních 12 znaků  z textu na panelu (pouze tolik lze zobrazit na BS100). To, že tento text vznikl z nápisu na panelu symbolizuje  zamáčknuté tlačítko vpravo od editačního okénka.
+4.	Text v editačním okénku je možné přepsat (což bývá často vhodné). Jakákoliv jeho změna způsobí vymáčknutí tlačítka vpravo (znamená, že text se liší od toho, který je odvozen přesně z nápisu na panelu). 
+5.	Jestliže tlačítko vpravo od editačního okénka stiskneme (když je vymáčknuto, protože text neodpovídá přesně nápisu na panelu), bude opětně do editačního okénka text odvozený z nápisu na panelu naplněn.. 
+6.	Pokud chceme takto upravený text ekvivalentu zachovat  k danému číslu cíle, musíme tak učinit stiskem tlačítka ULOŽ.
+7.	Po úpravě a kontrole všech textů pomocí volby Ekvivalenty/Zapsat jako (BBD/BBF) uložíme texty pro BS100 do souboru (*.bbd nebo *.bbf).
+Pozn.:
+Uložení do souboru *.bbf je možné pouze do již existujícího souboru. (Na začátku souboru *.bbf jsou konfigurační informace - proto není možné uložení do zcela nového souboru.)  
+8.	Pokud již máme soubor (*.bbd nebo .bbf) s texty pro BS100 vytvořen, je možné ho po otevření  databáze panelu (ze souboru *.hex) - viz bod 2)  - pomocí volby Ekvivalenty/Načíst (BBD/BBF) (v menu editoru cílů) tyto texty do editoru cílů načíst. Zde je možné v nich dělat změny. Po provedení změn je potřeba je opětně uložit do souboru - buď stejného nebo nového (viz bod 7). 
+
+
+Vytváření a úpravy textů pro BS230 
+S pomocí programu gBUSE0 je možno vytvářet texty (tzv. ekvivalenty) také pro ovládací jednotku  BS230. Zde je nutno rozlišit BS230 vybavenou programem řady O200 a BS230 vybavenou programem řady O400.
+Program řady O400 zobrazuje tzv. ekvivalenty maximální délky 12 znaků - obdobně jako BS100. Proto pro BS230 s programem řady O400 vytváříme tzv. ekvivalenty stejným postupem jako pro BS100  - výstupní soubor však  vždy musí být typu  *.bbd. 
+Program řady O200 umožňuje zobrazit tzv. ekvivalenty i větší délky než 12 znaků. Principiálně se ekvivalenty i v tomto případě vytváří stejně jako pro BS100, avšak v menu Nástroje/Nastavení je nutné označit možnost BS230. Případně i vybrat patřičnou tabulku BS230  pro kódování národní abecedy (pro jiné jazyky než čeština a slovenština). Tvorba ekvivalentů v rámci editoru cílů probíhá stejně, jen v editačním okénku pro ekvivalenty není text omezován tvrdě na 12 znaků, ale na tolik, kolik se vejde na displej BS230. 
+ 
+	
+ 
+	
+Poznámky k tvorbě ekvivalentů:
+Je vhodné k vytváření ekvivalentů přistoupit až když jsou definitivně dokončeny (a uloženy do souborů *.hex) databáze panelů. Tedy nedělat tyto činnosti současně. Pokud pak po ukončení tvorby ekvivalentů (a jejich uložení do souboru *.bbd resp. *.bbf) budeme ukončovat činnost programu gBUSE0, budeme vždy dotázáni, zda chceme uložit změny v databázi panelu do souboru. Je to důsledek používání tlačítka ULOŽ k ukládání ekvivalentů. (je hlášena změna v databázi panelu, i když ke skutečné změně nedošlo). Pokud jsme dodrželi výše uvedenou zásadu, vždy s klidem odpovíme NE.
+Společně s vytvořenými ekvivalenty bude jako verze databáze do souboru *.bbd uložen stejný řetězec jako je verze otevřené databáze panelu. Chceme-li jiné označení verze databáze *.bbd, musíme před zápisem ekvivalentů do souboru *.bbd změnit verzi databáze panelu (viz Konfigurace). 
+Ještě před uložením dat do souboru *.bbd máme možnost rozhodnout o tom, zda chceme, aby řidič viděl seznam setříděný podle abecedy (je nutno zvolit menu Ekvivalenty/A,B,C,..,Z) nebo podle čísel (zvolit menu Ekvivalenty/1,2,3,...,999).
+	
+ 
+Prohlížeč databáze panelu
+Jako prohlížeč slouží hlavní okno programu, neboť prohlížení databáze panelu je jeho základní funkcí. Menu hlavního okna umožňuje práci se soubory obsahujícími databázi panelu  a přepínání jednotlivých činností programu. V jeho dolní části jsou skupiny ovládacích prvků vztahujících se k databázím linek, cílů resp. zastávek.. 
+Význam jednotlivých prvků každé z těchto skupin si ukážeme na příkladu skupiny ovládacích prvků vztahujícím se k cílům: Skupina obsahuje zadávací pole, které jednak zobrazuje číslo navoleného cíle a ve své  pravé části obsahuje tzv. rozbalovací tlačítko. Po klepnutí na toto tlačítko se pod zadávacím polem rozbalí seznam s výčtem všech čísel cílů obsažených v databázi cílů. Kliknutím na cíl vybraný ve výčtu dojde k jeho zobrazení jednak v zadávacím poli cíle a jednak na panelu. Vedle zadávacího pole je dvojtlačítko, které slouží k přepínání cílů - horní tlačítko směrem k vyšším číslům, dolní směrem k nižším číslům. Třetím prvkem je zaškrtávací pole ”jen existující” pod nimi. Určuje, zda přepínání čísel cílů pomocí dvojtlačítka má probíhat pouze přes čísla cílů existující v databázi nebo přes všechna možná čísla cílů. Na kterékoliv tlačítko na dvojtlačítku můžeme buďto pouze jedenkrát klepnout, pak dojde k přechodu na následující či předcházející cíl, nebo můžeme tlačítko myší přidržet a potom bude automaticky číslo cíle zvyšováno či snižováno. Teprve až se objeví požadovaný cíl, tlačítko uvolníme. Když není zaškrtnuto ”jen existující”, je možné do zadávacího pole také požadované číslo cíle napsat. Po stisku klávesy Enter dojde k jeho zobrazení na panelu.
+Pokud se v databázi cíl/zastávka s některým číslem nenachází,  je zobrazeno upozornění, že cíl/zastávka neexistuje. Zde je drobný rozdíl v případě databáze linek. Vyplývá to z rozdílného chování panelu: Při požadavku na zobrazení cíle/zastávky neexistujícího v databázi se nic nestane a panel nadále zobrazuje předcházející informaci. Proto i při prohlížení zůstává starý nápis, který je překryt upozorněním, že daný cíl neexistuje. Požadavek na zobrazení čísla linky je však proveden vždy. Buďto databáze linek obsahuje informaci, která je zobrazena nebo je zobrazeno přímo požadované číslo linky (s využitím předvolených parametrů - font, mezera, posun). Stejně tak se chová i prohlížeč (tím pádem nikdy nehlásí, že linka neexistuje).
+Stiskem pravého tlačítka myši nad skupinou ovládacích prvků vztahujících se k cíli/lince/zastávce dojde k vyvolání místního roletového menu, pomocí kterého lze aktivovat příslušný editor nebo vymazat jeden (právě zobrazovaný) cíl/linku/zastávku nebo vymazat cíle/linky/zastávky všechny.         
+V horní části prohlížeče (nad panelem simulujícím skutečný panel) se může objevit žluté pole s nápisem např. „Cíl: Příliš dlouhý nápis!“. Tato žlutá informační pole jsou tři. Vztahují se jednotlivým zobrazovacím polím - poli linky, poli cíle a poli zastávky. Podle toho také nápis v nich začíná slovem Linka, Cíl resp. Zastávka. Toto žluté pole se objeví tehdy, když obraz textu vyvolaný daným kódem se nevejde do zobrazovacího pole (Rozuměj tím: nevejde se na šířku). Je potřeba upozornit, že toto žluté pole se zobrazuje stále - dokud je navolen kód, jehož obraz se do daného zobrazovacího pole nevejde. Tedy i tehdy, když se toto pole nezobrazuje (Například: Je vybrán kód linky, který způsobí zobrazení informace, že obsahuje příliš dlouhý text. Dokud zůstane navolen tento kód linky, bude se tato informace zobrazovat, i když daná linka na panelu zobrazena nebude - protože bude vyvolán editor cílů, nebo protože bude vybrán kód cíle, jehož obraz se přepisuje přes pole linky.)
+
+
+
+
+ 
+
+Hlavní menu programu gBUSE0:
+
+Soubor/Nový 
+Provádí přípravu na tvorbu zcela nové databáze panelu. Vymaže databáze linek, cílů a zastávek   (pokud jste již měli nějakou otevřenou) a otevře editor fontů. To proto, že zcela základní a nezbytnou součástí databáze panelu jsou fonty. Pokud jste již měli nějakou databázi otevřenou, budou vám v rámci  editoru fontů nabídnuty k použití fonty z této databáze. Pokud jste neměli žádnou databázi otevřenou,  je nezbytné načíst fonty ze souboru (viz Menu editoru fontů). Po zavření editoru fontů bude otevřeno ještě okno Konfigurace pro nastavení základních parametrů chování panelu s připravovanou databází (viz Konfigurace). 
+
+Soubor/Otevřít
+Načítá soubor *.hex obsahující databázi panelu. Rozdělí ji na jednotlivé části, které budou přístupné pomocí editorů fontů, linek, cílů resp. i zastávek a pomocí okna Konfigurace.
+
+Soubor/Otevřít znovu
+Umožňuje opětně otevřít některý z pěti naposledy používaných souborů *.hex.
+
+Soubor/Uložit
+Uloží modifikovanou databázi panelu zpět do souboru (*.hex), ze kterého byla načtena.   
+
+Soubor/Uložit jako
+Uloží modifikovanou databázi panelu do souboru (*.hex), který si vyberete. Může to být zcela nový soubor nebo soubor již existující. Na přepis existujícího souboru budete upozorněni.
+
+Soubor/Zavřít
+Uvede program gBUSE0 do výchozího stavu jako po spuštění - zruší všechna data, zruší i zobrazení panelu simulujícího skutečný panel..
+
+Soubor/Konec
+Ukončí činnost programu gBUSE0.
+
+
+Nástroje/Editor fontů
+Aktivuje okno editoru fontů.
+
+Nástroje/Editor linek
+Aktivuje okno editoru linek.
+
+Nástroje/Editor cílů
+Aktivuje okno editoru cílů.
+
+Nástroje/Editor zastávek
+Aktivuje okno editoru zastávek.
+
+Nástroje/Konfigurace
+Aktivuje okno Konfigurace.
+
+Nástroje/Nastavení
+Aktivuje okno pro nastavení chování programu gBUSE0.
+
+
+Info/O programu
+Aktivuje okno informující o verzi programu gBUSE0.
+
+	
+ 
+Editor cílů
+Okno editoru cílů obsahuje editační pole pro zadávání textu daného cíle a vpravo od něho tlačítka a ovládací prvky vztahující se k formátování daného textu. V pravé části  okna editoru cílů je  přepínání  mezi  jednořádkovými (1) a dvouřádkovými (2) texty. Pokud je text víceslovní a nevejde se na jeden řádek, je možné přepnutím na dvouřádkový text tento text na panel lépe umístit. Pokud před přepnutím vybereme a označíme část textu v zadávacím poli jednořádkového textu, bude po přepnutí tato přesunuta do zadávacího pole druhého řádku. Při opačném přepnutí (ze dvouřádkového textu na jednořádkový) se text druhého řádku přidá za text prvního řádku a zůstane označen, což umožní opětné přepnutí zpět.
+Tlačítka a ovládací prvky vpravo od zadávacích polí jsou pro každý řádek samostatné, ale mají vždy stejný význam (popisována jsou zleva doprava): 
+
+inverze -	tlačítko je aretované, jeho stisk způsobí, že text  bude zobrazen inverzně
+levý doraz - 	tlačítko vypne centrování textu v daném poli a posune text až k levému okraji pole 
+vlevo -	tlačítko vypne centrování textu v daném poli a posune text o jeden sloupec vlevo (funguje dokud se text nedorazí až k levému okraji pole)
+centrování - 	tlačítko obnovuje centrování textu v daném poli a umístí text na střed tohoto pole
+vpravo - 	tlačítko vypne centrování textu v daném poli a posune text o jeden sloupec vpravo (funguje dokud se text nedorazí až k pravému okraji pole)
+pravý doraz - 	tlačítko vypne centrování textu v daném poli a posune text až k pravému okraji pole 
+volba fontu - 	ovládací prvek udává číslo fontu; klepnutím na tlačítko v pravém horním rohu  	tohoto prvku je číslo fontu zvýšeno, klepnutím na tlačítko pod ním (v pravém 	dolním rohu) je číslo fontu sníženo (o fontech blíže v editoru fontů) 
+zvětšit mezeru -	každý stisk tlačítka zvětší mezeru mezi znaky o jeden sloupec;
+	maximum je 15 sloupců
+zmenšit mezeru - 	každý stisk tlačítka zmenší mezeru mezi znaky o jeden sloupec;
+	minimum je 0 (znaky těsně vedle sebe), pak přestane být tlačítko aktivní
+posun dolů -		každý stisk tlačítka způsobí posun textu o 1 bod dolů;
+		maximum je 31 bodů
+posun nahoru - 	každý stisk tlačítka způsobí zmenšení posun textu o 1 bod (pohyb textu nahoru);
+ 		minimum 0 (font začíná u horního okraje panelu)
+
+Pod tlačítky je zaškrtávací pole zapínající a vypínající autoformát textu ze zadávacího pole do zobrazení na panelu. Autoformát lze kdykoliv klepnutím na zaškrtávací pole vypnout nebo je vypnut automaticky použitím některého z ovládacích prvků, v rámečku (font, mezera mezi znaky a posun).
+Ve spodní části je ještě aretované tlačítko, jehož stisk způsobí, že na začátek cíle (před text nápisu) jsou přidány řídicí příkazy, které zablokují zobrazování linky a roztáhnou pole cíle přes celý panel (má význam pouze pro kombinovaný panel).
+V případě dvouřádkového textu je před zadávacími poli textu řádků aretované tlačítko umožňující záměnu řádků, tzn. text spodního zadávacího pole bude na panelu zobrazen na horním řádku a text horního zadávacího pole na dolním řádku. 
+V levé části okna editoru cílů je zadávací pole pro zadání čísla cíle.
+Tlačítko ULOŽ zapíše připravený zformátovaný text cíle do databáze cílů v rámci databáze panelu pod zadaným číslem cíle. Není-li číslo cíle zadáno, nemá stisk ULOŽ žádný efekt. Pokud cíl se zadaným číslem již existuje je vypsáno upozornění s dotazem, zda daný cíl přepsat. Jedná-li se o opravu daného cíle, potvrdíme (ANO) a cíl bude přepsán. Jestliže si to nepřejeme, nepotvrdíme (NE), změníme číslo cíle a uložení opakujeme. Tlačítkem ULOŽ je nutné potvrzovat jakékoliv změny v obrazu cíle, jinak je při přechodu na cíl s jiným číslem (ale i stiskem tlačítka NOVÝ CÍL) ztratíme.
+Je však možné pomocí menu Nástroje/Nastavení přepnout činnost editoru linek, editoru cíle a editoru zastávek do režimu automatického ukládání změn bez nutnosti jejich potvrzování. V tomto režimu editor cílů při změně čísla cíle (i při použití tlačítka NOVÝ CÍL) změněný cíl vždy automaticky uloží.    
+Tlačítko NOVÝ CÍL uvádí editor cílů do počátečního stavu. Vymaže zadávací pole čísla cíle, zadávací pole textů obou řádků, zruší inverzní zobrazení a obnoví centrování textu, zapne autoformát a zruší blokování pole linky a pole cíle nastaví dle zadání v okně Konfigurace.
+ 
+
+Upozornění: 
+Tlačítko NOVÝ CÍL nevymazává cíl z databáze cílů. Pouze v rámci editoru cílů připravuje prvky pro tvorbu nového obrazu. Vymazání cíle je nutné vyvolat pomocí menu Cíle/Vymazat jeden cíl resp. Cíle/Vymazat všechny cíle nebo pomocí místního roletového menu vyvolávaného pravým tlačítkem myši nad  prvky zadávajícími cíl. (Možné je to i z místního roletového menu prohlížeče.) 
+
+Poznámka:
+Autoformát se řídí interními tabulkami programu gBUSE0. Jejich obsah lze modifikovat pomocí funkce Nástroje/Nastavení. (Nastavení tabulek je závislé na organizaci použitých fontů.)
+
+Tvorba  střídajících se nápisů
+Je-li v editor cílů přepnut na tvorbu dvouřádkových nápisů, je možné do editačního okna dat druhého řádku (spodní editační okno) vepsat konstrukci typu <text 1>|<text 2>|<text 3>. V takovém případě  bude na horní řádku trvale zobrazován text z horního editačního okna a na dolním řádku se budou postupně (a stále dokola) střídat <text 1>, <text 2> a <text 3>. Pokud bude v této situaci stisknuto tlačítko pro záměnu řádků, bude se text z horního editačního okna trvale zobrazovat na dolním řádku panelu a  <text 1>, <text 2> a <text 3> se budou střídat na řádku horním.
+Tři střídající se texty jsou zvoleny jako příklad, obecně jich může být i jiný počet. Oddělovačem těchto střídajících se textů je znak | (možno ho zapsat i pomocí kombinace číslic 0124 na numerické klávesnici při současném držení klávesy ALT).
+  
+Využití souborů *.txt 
+Data do editoru cílů lze načíst z textového souboru (*.txt), který musí mít následující strukturu. Údaje týkající se jednoho cíle musí být na jednom řádku a musí být vzájemně odděleny znakem  tabulátoru  (TAB). Údaje na řádku musí začínat číslem (do cíle s tímto číslem bude obraz vytvořený z následujících údajů uložen). Za číslem následuje text pro horní řádek a za ním jeden nebo více textů  pro dolní řádek. Není-li uveden žádný text pro dolní řádek, je první text (text pro horní řádek) považován za text jednořádkový a jako jednořádkový bude naformátován na panel. Je-li uveden alespoň jeden text pro druhý řádek, budou texty formátovány na panel jako dvouřádkové. Jestliže je textů pro dolní řádek uvedeno více, bude vytvořena konstrukce, kdy se všechny tyto texty postupně na dolním řádku panelu střídají. Texty načítané ze souboru *.txt jsou podrobeny autoformátu (je nalezen nejvhodnější font a mezera mezi znaky pro jejich zobrazení). Je vhodné po tomto načtení si jednotlivé cíle prohlédnout a přesvědčit se, zda výsledek autoformátu je vyhovující nebo zda bude vhodný nějaký doplňující ruční zásah. Ten bude nezbytný hlavně v případě, jsou-li načítané texty dlouhé a nemusí se tedy na panel vejít celé.
+Údaje výše popsané struktury mohou být prokládány tzv. řídicími řádky, které popisují jak budou data na řádcích následujících za tímto řídicím řádkem zpracovávána.  Řídicí řádky tak umožňují změnit implicitně daný (výše popsaný) význam jednotlivých textů na řádku za číslem a rovněž umožňují tvorbu složitějších konstrukcí nápisů . Řídící řádek musí začínat znakem dolar ($). Za znakem $  následuje  konstrukce obrazu cíle zapsaná pomocí příkazů mnemo jazyka. Na místech, kde má být zařazen některý z textů  zpracovávaného řádku  se uvede pouze znak dolar a pořadové číslo tohoto textu na řádku (pro potřeby řídicích řádků číslujeme texty na zpracovávaném řádku od jedné počínaje textem, který následuje za číslem, kterým řádek vždy začíná). Je-li uveden jenom dolar+číslo textu - např. $2, bude do konstrukce cíle text (v našem příkladu druhý z textů následujících za úvodním číslem) vložen přímo. Bude-li znak dolar a pořadové číslo textu uvedeno v hranatých závorkách - např. [$2], bude příslušný text před vložením podroben autoformátu pro jednořádkové texty. Bude-li znak dolar a pořadové číslo textu uvedeno v kulatých závorkách  - např. ($2), bude příslušný text před vložením podroben autoformátu pro dvouřádkové texty.  
+
+
+ 
+
+Menu editoru cílů:
+
+Cíle/Načíst ...
+Umožňuje načíst cíle ze souboru. Je možné načtení buď ze speciálního souboru cílů (*.cil) nebo přímo z již existující databáze panelu (*.hex). Kromě toho je možné načítat cíle z textových souborů (*.txt) . případně z ”importového” souboru cílů (*.cl) nebo též z databáze BS100 resp. BS230 (*.bbd, popř. *.bbf). Před načítáním jsou všechny již existující cíle smazány a ze souboru jsou načteny nové.
+
+Cíle/Přidat ...
+Obdoba menu Načíst. Umožňuje načíst cíle ze souboru stejně jako v menu Načíst, s tím rozdílem.     že před čtením nemaže cíle existující a načítané k nim přidává. Při načtení již exitujícího cíle  umožňuje volit, zda ho přepsat novým, či ponechat původní.    
+
+Cíle/Uložit jako ...
+Uloží právě aktuální stav databáze cílů do souboru cílů (*.cil) popř. (*.ci4), který si vyberete. Může to být zcela nový soubor nebo soubor již existující. Na přepis existujícího souboru budete upozorněni. 
+Je však možné cíle uložit rovněž do textového souboru (*.txt) nebo do ”importového” souboru (*.cl) - tím se však ztrácí informace o jejich formátování.
+
+Cíle/Přidat nový cíl
+Editor přejde do stavu jako po stisku tlačítka NOVÝ.
+
+Cíle/Vymazat jeden cíl
+Vymaže cíl, jehož číslo je uvedeno v zadávacím poli čísla cíle. Do editoru cílů se převezme další cíl z databáze cílů.  Vyžaduje se potvrzení dotazu, že výmaz skutečně chceme. 
+
+Cíle/Vymazat všechny cíle
+Vymaže všechny cíle z databáze cílů. Editoru cílů přejde do stavu jako po stisku tlačítka NOVÝ CÍL.  Vyžaduje se potvrzení dotazu, že výmaz skutečně chceme.
+
+Cíle/Zpět [původní]
+Způsobí návrat k původnímu tvaru nápisu. Původním tvarem se rozumí stav nápisu v okamžiku jeho vybrání podle čísla. Za původní se rovněž považuje stav nápisu při stisku tlačítka ULOŽ.
+
+Cíle/Tisk 
+Umožňuje tisk cílů (v grafické podobě - jak vypadají na panelu). Je možné volit, zda tisknout vše nebo jen cíle v rozmezí zadaných čísel.
+
+Cíle/Zavřít editor 
+Zavře okno editoru cílů. Totéž lze provést pomocí zavíracího tlačítka v pravém horním rohu okna editoru cílů. K automatickému zavření editoru cílů dojde i při jakémkoliv kliknutí myší mimo okno editoru cílů. Editor si však pamatuje provedené změny a při jeho novém vyvolání se zobrazí ten stav nápisu, jaký byl před zavřením editoru. (Samozřejmě za předpokladu, že mezi tím nepřejdete na cíl s jiným číslem.) 
+
+
+Ekvivalenty/Načíst (BBD/BBF)
+Načte ze souboru (*.bbd resp. *.bbf)  ekvivalenty a přiřadí je k jednotlivým cílům se stejným číslem. Při načtení ekvivalentu s číslem, které v panelu neexistuje, zobrazí upozornění. Naopak u cílů, ke kterým se ze souboru  žádný ekvivalent nenačetl, zůstane původní stav.   
+Menu je přístupné pouze, když je v menu Nástroje/Nastavení ve volbě Ekvivalenty vybrána možnost BS100.
+
+Ekvivalenty/Načíst (BBD)
+Načte ze souboru (*.bbd) ekvivalenty a přiřadí je k jednotlivým cílům se stejným číslem. Při načtení ekvivalentu s číslem, které v panelu neexistuje, zobrazí upozornění. Naopak u cílů, ke kterým se ze souboru žádný ekvivalent nenačetl, zůstane původní stav.   
+Menu je přístupné pouze, když je v menu Nástroje/Nastavení ve volbě Ekvivalenty vybrána možnost BS230.
+
+ 
+
+Ekvivalenty/Zapsat jako (BBD/BBF)
+Zapíše ekvivalenty ke všem existujícím cílům do souboru (*.bbd, resp. *.bbf). Pořadí v jakém budou ve výstupním souboru uvedeny se vybírá pomocí menu Ekvivalenty/A,B,C,....,Z nebo Ekvivalenty/1,2,3,....,999.
+Zápis do souboru typu *.bbf je možný pouze do již existujícího souboru (jinak je hlášena chyba).
+Menu je přístupné pouze, když je v menu Nástroje/Nastavení ve volbě Ekvivalenty vybrána možnost BS100.
+
+Ekvivalenty/Zapsat jako (BBD)
+Zapíše ekvivalenty ke všem existujícím cílům do souboru (*.bbd). Pořadí v jakém budou ve výstupním souboru uvedeny se vybírá pomocí menu Ekvivalenty/A,B,C,....,Z  nebo Ekvivalenty/1,2,3,....,999.
+Menu je přístupné pouze, když je v menu Nástroje/Nastavení ve volbě Ekvivalenty vybrána možnost BS230.
+
+Ekvivalenty/A,B,C,....,Z
+Nastavuje příznak určující, že při zápisu ekvivalentů do souboru budou uváděny v abecedním pořadí.
+
+Ekvivalenty/1,2,3,....,999
+Nastavuje příznak určující, že při zápisu ekvivalentů do souboru budou uváděny v pořadí podle čísel cílů.
+
+	
+ 
+Editor linek
+Okno editoru linek je funkčně obdobné oknu editoru cílů, edituje však nápisy v poli linky, které jsou pak ukládány do databáze linek v rámci databáze panelu. Editor linek neobsahuje tvorbu ekvivalentů.
+
+Editor zastávek
+Okno editoru zastávek je rovněž funkčně obdobné oknu editoru cílů. Nelze v něm však vytvářet dvouřádkové nápisy. Editor zastávek vytváří nápisy do pole zastávky a ty jsou ukládány do databáze zastávek v rámci databáze panelu.  Editor zastávek rovněž neobsahuje tvorbu ekvivalentů.
+
+	
+ 
+Editor fontů
+Okno editoru fontů obsahuje pole 28x28 bodů, které je možné stiskem tlačítka VELKÝ, zvětšit na pole 28x56 bodů. Toto pole umožňuje zobrazovat a vytvářet jednotlivé fonty. Vedle je zadávací políčko pro číslo fontu. Je možné vytvořit až 16 skupin (číslované 0 až 15) různých fontů. Každá skupina by měla obsáhnout celý repertoár použitelných znaků a měla by mít shodné některé společné znaky - minimálně výšku fontů. (Avšak i jiné: jednočárové, dvojčárové či tříčárové znaky, úzké nebo širší, přičemž šířka všech znaků nemusí být stejná, apod.) Většinou nabývají všechny skupiny fontů využity.
+Vpravo od zadávacího políčka pro číslo fontu je dvojtlačítko pro snadnější prohlížení. Stisk horního tlačítka zvyšuje číslo fontu o jedničku, naopak stisk dolního ho snižuje. Pokud tlačítko držíme zvyšování  či snižování čísla fontu se opakuje. 
+Pod zadávacím polem pro číslo fontu jsou dvě zadávací pole vedle sebe určená pro kód znaku. Jsou vzájemně svázána a při jakékoliv změně zobrazují tentýž kód - v jednom poli v dekadické a v druhém v hexadecimální podobě. Zadávat lze kód do libovolného z nich (při respektování příslušné číselné soustavy). Vpravo vedle polí kódu znaku je obdobné dvojtlačítko usnadňující prohlížení znaků. Stisk horního má za následek zvýšení, stisk dolního pak snížení  kódu znaku o jedničku.  
+Stisk některého z prohlížecích dvojtlačítek vyvolá nejen změnu kódu znaku či čísla fontu, nýbrž i jeho okamžité zobrazení. Naproti tomu změna čísla fontu nebo kódu znaku v jeho zadávacím poli nemá za následek okamžité zobrazení fontu. To nastane teprve po stisku tlačítka ZOBRAZ. Takový způsob umožňuje nechat si zobrazit font znaku nějakého kódu (např. písmeno O), změnit kód znaku (aniž by se obraz fontu změnil)  buď přímo  (stiskem tlačítka ULOŽ)  ho nechat uložit pod jiný kód (např. číslici 0)  nebo před  uložením provést potřebnou úpravu (např. na písmeno Q) a uložit ho pod příslušný kód (kód písmene Q)..
+Pod tlačítkem ULOŽ je ještě jedno zadávací pole pro klávesu na klávesnici, jejíž stisk v rámci editoru cílů/linek/zastávek má na panelu vyvolat zobrazení právě nastaveného obrazu písmene (uloženého v tabulce fontů pod nastaveným kódem). Tlačítko ULOŽ tedy uloží obraz fontu jaký je vidět do skupiny fontů zadaného čísla pod zadaným kódem znaku a přiřadí mu zadanou klávesu. Je pochopitelné, že jedné klávese lze takto přiřadit pouze jediný kód -  neboli danou klávesu lze v rámci souboru fontů použít pouze jednou. Bude platit pro daný kód pro libovolné číslo fontu.
+V pravé spodní části okna editoru fontů je skupina tlačítek, které umožňují font posouvat nahoru, dolů, vpravo a vlevo. Prostřední tlačítko změní zobrazený obraz na inverzní. Pokud zobrazený obraz není obdélník, bude na něj doplněn. Tohoto doplnění, avšak bez inverze lze docílit dvojím stiskem tohoto tlačítka. 
+Pro lepší orientaci v poli fontu je na spodní liště okna průběžně vypisováno číslo řádku a číslo sloupce, nad kterým se nachází kurzor myši. Dále je na liště vypisována výška a šířka fontu a vpravo počet znaků, který je ve skupině fontů zadaného čísla definován.
+Body pole znaku jsou ve stavu černá nebo žlutá - symbolizující stavy bodu na panelu, nebo ve stavu šedá - symbolizující nepoužití daného bodu v rámci fontu. Je-li bod ve stavu šedá a klikneme-li nad ním levým tlačítkem myši, převedeme ho do stavu žlutá. Klikneme-li nad ním pravým tlačítkem myši, převedeme ho do stavu černá. Je-li bod ve stavu černá nebo žlutá a klikneme-li nad ním kterýmkoliv tlačítkem myši, přejde do stavu opačného. Do stavu šedá bod převedeme, když při kliknutí myší nad ním držíme klávesu Shift. Pokud stiskneme tlačítko myši a držíme ho, je při pohybu myší vytvářena úsečka z počátečního bodu do bodu, nad kterým tlačítko uvolníme. Úsečka je kreslena žlutá, držíme-li levé tlačítko myši, nebo černá, pokud držíme pravé tlačítko. Jestliže se stiskem tlačítka myši (jedno kterého) držíme i klávesu Shift, je kreslená úsečka šedá.
+Při vytváření nového fontu není nutné vyplňovat černou celé pozadí, neboť při stisku tlačítka ULOŽ je každý obrazec vždy převeden na minimálně nutný obdélník neobsahující žádné šedé body - pokud jsou šedé, změní je na černé. (Stačí tedy klepnutím myši označit pravý dolní roh fontu.)
+Běžný stisk některého tlačítka pro posun posouvá font po celém poli možné velikosti fontu. Je-li během stisku držena klávesa Shift, je posouván obraz v rámci použitého pole fontu, jehož velikost tak zůstává stejná.
+
+
+ 
+
+Upozornění:
+Jestliže při jakémkoliv posunu obrazu fontu pomocí tlačítek se šipkami ”vypadne” část kresby mimo zobrazovací pole, nebude již posunem opačným směrem vrácena zpět.   
+
+Poznámka:
+Pro zobrazování znaků je možné využívat kódy v intervalech <32,175> a <240,255>. Na ostatních kódech jsou řídicí znaky. Proto také při zadání kódu mimo tyto intervaly budete při stisku tlačítka ZOBRAZ nebo ULOŽ na tuto skutečnost upozornění a operace (zobrazení či uložení) se neprovede. Prohlížecí dvojtlačítka kódy řídicích znaků automaticky přeskakují.
+
+
+Menu editoru fontů:
+
+Fonty/Načíst ...
+Umožňuje načíst fonty ze souboru. Je možné načtení buď ze speciálního souboru fontů (*.fnt) nebo přímo z již existující databáze panelu (*.hex). Před načítáním jsou všechny již existující fonty smazány a ze souboru jsou načteny nové.
+
+Fonty/Uložit jako ...
+Uloží právě aktuální stav fontů do souboru fontů (*.fnt), který si vyberete. Může to být zcela nový soubor nebo soubor již existující. Na přepis existujícího souboru budete upozorněni.
+ 
+Fonty/Vymazat jeden font
+Vymaže znak/symbol, který je právě zobrazován v editoru fontů, tj. zruší obraz přidělený vybranému fontu a kódu. Vyžaduje se potvrzení dotazu, že výmaz skutečně chceme. 
+ 
+Fonty/Vymazat vše pro jeden kód
+Projde všechny fonty (0 až 15) a ve všech vymaže obraz přidělený vybranému (zobrazovanému) kódu. Současně vymaže i klávesu, pokud byla tomuto kódu přiřazena. Vyžaduje se potvrzení dotazu, že výmaz skutečně chceme.
+ 
+Fonty/Vymazat vše pro jeden font
+Projde všechny kódy (32 až 175 a 240 až 255) v rámci vybraného (zobrazovaného) fontu a smaže všechny obrazy jim přidělené. Vyžaduje se potvrzení dotazu, že výmaz skutečně chceme.
+ 
+Fonty/Vymazat všechny fonty
+Vymaže kompletně všechny obrazy pro všechny kódy ve všech fontech. Vyžaduje se potvrzení dotazu, že výmaz skutečně chceme.  
+
+
+Fonty/FM (font manager)
+Umožňuje kopírovat jednotlivé obrazy na jiný kód resp. font než jsou nyní použity. Kopírování je možné buďto v rámci právě aktuálních pracovních fontů v programu gBUSE0 nebo z fontů načtených ze  souboru (*.fnt resp. *.hex).
+
+Fonty/Zavřít editor 
+Zavře okno editoru fontů. Totéž lze provést pomocí zavíracího tlačítka v pravém horním rohu okna editoru fontů. Na rozdíl od editorů cílů/linek/zastávek si editor fontů změny nepotvrzené tlačítkem ULOŽ nepamatuje! 
+
+
+	
+ 
+FM (font manager)
+Slouží ke kopírovaní obrazů jednotlivých znaků mezi kódy resp. fonty. 
+Vždy při otevření si do své zdrojové oblasti zkopíruje aktuální stav pracovních fontů a z ní je potom kopíruje do pracovních fontů. (Je tedy možné např. zkopírovat obraz z kódu 65 na kód 70 a potom obsah kódu 70 na kód 65 - dojde k záměně obrazů na těchto kódech.) Je také možné zdrojovou oblast přepsat fonty ze souboru (*.fnt resp. *.hex) a potom přemísťovat obrazy znaků jakoby ze souboru do pracovních fontů programu gBUSE0. Pro načtení fontů ze souboru je nutno v horní části okna FM přepnout z možnosti Z AKTUÁLNÍCH FONTŮ na možnost ZE SOUBORU. Tím bude vyvolán dialog pro výběr souboru, ze kterého se fonty do zdrojové oblasti FM načtou.
+Levá část okna FM zobrazuje vždy ze zdrojové oblasti a pravá pracuje s aktuálními pracovními fonty (tj. těmi, co budou součástí vytvářené databáze panelu). Výběr znaku se provádí podle čísla fontu a kódu. Buďto přímým zapsáním do daného zadávacího pole, kdy po ukončení zadávání stiskem klávesy Enter bude příslušný obraz znaku zobrazen. Nebo postupným prohlížením s využitím příslušného dvojtlačítka. Aby bylo možno zadávat kódy znaků, je potřeba mít v levé části vybránu volbu Jeden znak. Potom je v dolní části okna aktivní pouze tlačítko ANO, které způsobí překopírování obrazu z levé části do pravé. Pokud zvolíme v levé části volbu Celý font, budou v dolní části okna aktivní všechna tři tlačítka (ANO, NE, VŠE), nebude již však možné zadávat kódy znaků.
+Stisk tlačítka ANO v tomto případě způsobí nejen překopírování obrazu znaku z levé do pravé části, ale i o jedničku zvýší kód znaku v obou částech. Dokud kód znaku v některé z částí nedosáhne hodnoty 255, bude možné postupně v překopírování pokračovat. Stisk tlačítka NE. přeskakuje překopírování a pouze zvýší o jedničku kódy znaku v obou částech. Stisk tlačítka VŠE automaticky opakuje činnosti tlačítka ANO, dokud kód znaku v některé části nedosáhne hodnoty 255 (automaticky tedy překopíruje obrazy znaků na všech kódech vyšších než právě nastavených). 
+V případě volby Všechny fonty (v levé části) lze podobně překopírovat obrazy přes všechny fonty.
+
+
+Poznámka:
+Nutno upozornit na rozdílnost chování zadávacího pole pro číslo fontu a obou zadávacích polí pro kód znaku v okně FM a v okně editoru fontů. Zatímco v okně FM reagují všechna pole po zapsání požadovaného čísla na stisk klávesy Enter, v okně editoru fontů uvedená pole na klávesu Enter záměrně nereagují. Je to proto, že zápis jiného kódu znaku (či jiného čísla fontu) můžeme provádět jednak za účelem zobrazit příslušný obraz fontu (pak musíme stisknout tlačítko ZOBRAZ) nebo za účelem právě zobrazený obraz fontu pod zadaný kód uložit  (pak musíme stisknout tlačítko ULOŽ). 
+
+
+
+ 
+Konfigurace
+V okně Konfigurace se nastavují parametry chování panelu (verzi FW, typ zobrazení, rozměry, předvolby, povely IBIS, ....). Konfiguraci je třeba zahájit na záložce PANEL a potom překontrolovat nastaveni na všech ostatních záložkách.
+
+Záložka PANEL. 
+FW:
+Nastavuje se, pro kterou verzi firmware (neboli programu v EPROM paměti v panelu) je databáze určena . 
+Podrobnosti k nastavovaní verze firmware (FW) jsou uvedeny v kapitole Verze firmware  vnějších panelů.
+Změna FW se projeví na záložkách POLE LINKY, POLE CÍLE, POLE ZASTÁVKY, kde dojde u nižších verzí k znepřístupnění některých povelů IBIS a tím i zrušení jejich nastavení. (Pozor: Opětovný návrat FW na verzi vyšší sice některé povely opět zpřístupní, avšak nemůže vrátit jejich předchozí nastavení.) Podobně dojde i k znepřístupnění POLE ZASTÁVKY u verze FW 1.6.
+Informační pole:
+Volí se, jaká informační pole budou na panelu zobrazována (pole linky, pole cíle, pole zastávky, případně jejich kombinace). 
+Změna typu informačního pole má vliv na zpřístupnění  či znepřístupnění záložek POLE LINKY, POLE CÍLE, POLE ZASTÁVKY, kde je nutné nastavit rozměry daných polí, předvolby a použité povely IBIS. Při změně typu informačního pole dojde automaticky k přepnutí na záložku některého zobrazovacího pole, což signalizuje, že je nutné nastavit parametry všech nastavených zobrazovacích polí. 
+Verze databáze:
+V tomto okně je možné zadat řetězec až 15 znaků. Panel tímto řetězcem odpovídá na IBIS povel aV - dotaz na verzi dat (je využíváno v rámci funkce 'servis'  v BS100 resp. v BS230). 
+V tomto řetězci lze požívat pouze číslice a písmena anglické abecedy, případně speciální znaky - pomlčku, lomítko, tečku, čárku aj. Nelze použít znaků národní abecedy!
+
+Záložka POLE LINKY. 
+Rozměry:
+Udává se od kolikátého po kolikátý řádek resp. sloupec zobrazovací pole zasahuje. Řádky i sloupce jsou číslovány od 1 a to řádky zdola nahoru a sloupce zleva doprava. (Počátek souřadnic je v levém dolní rohu.)
+Předvolby:
+Nastavuje se počáteční font, mezera mezi znaky, posun a interval. Font, mezera a posun se uplatní pouze v případě textových povelů IBIS. Editory do nápisů ukládaných do databází vždy vkládají font, mezeru i posun (ať ručně nastavené nebo získané z autoformátu editoru), takže k uplatnění předvolených hodnot při kódovém řízení panelu většinou nedojde. K uplatnění předvoleb by však došlo, pokud například v mnemo jazyku tyto parametry opomeneme. Intervalem se rozumí interval opakování víceřádkových textů, resp. interval střídání více obrazů (pokud data cíle/linky/zastávky takovou konstrukci obsahují). Předvolený interval se uplatní, jestliže data neobsahují řídicí příkaz z..., kterým bude interval pro daná data přestaven na jiný.
+Povely IBIS: 
+Nastavuje se, na které povely IBIS bude panel reagovat.
+Formátovací řetězce: 
+Výběr formátovacích řetězců je přístupný pouze při výběru tzv.čtyřmístné linky (povel lA resp. povel aL). Formátovací řetězce definují způsob zobrazení v závislosti na první číslici čtyřmístné linky.
+Tlačítko Procházet... umožňuje vybrat soubor (*.aL,*.LA, resp. *.hex), který obsahuje tabulku formátovacích řetězců. Tlačítko žádné  tabulku formátovacích řetězců vymaže. Kromě tlačítek lze využít místního roletového menu vyvolaného stiskem pravého tlačítka myši nad rámečkem Formátovací řetězce. Roletové menu umožní načíst tabulku formátovacích řetězců ze souboru (*.aL, *.LA nebo *.hex) nebo obsah tabulky formátovacích řetězců do souboru uložit. Rovněž umožňuje tabulku formátovacích řetězců vymazat. Naplnění tabulky formátovacích řetězců je indikováno zobrazením jména souboru (společně s datem a časem jeho vzniku), ze kterého byla tabulka naplněna.  Nezobrazuje-li se jméno souboru, je tabulka prázdná.
+
+Záložka POLE CÍLE je analogií záložky POLE LINKY.
+
+Záložka POLE ZASTÁVKY je rovněž analogií záložky POLE LINKY.
+
+Záložka VLASTNOSTI:
+Zde je možno ovlivnit příznaky chování panelu (což se děje jen ve výjimečných případech).
+Kódová tabulka:
+Výběr kódové tabulky je přístupný pouze při použití některého textového povelu v poli cíle resp. v poli zastávky. Kódová tabulka zajišťuje překódovaní znaků s kódem >127 na vnitřní kódování panelu.
+Tlačítko Procházet... umožňuje vybrat soubor (*.kod), který obsahuje kódovou tabulku. Tlačítko žádná  kódovou tabulku vymaže. Kromě tlačítek lze využít místního roletového menu vyvolaného stiskem pravého tlačítka myši nad rámečkem Kódová tabulka. Roletové menu umožní načíst kódovou tabulku ze souboru (*.kod nebo *.hex) nebo obsah kódové tabulky do souboru uložit. Rovněž tak umožňuje kódovou tabulku vymazat. Naplnění kódové tabulky je indikováno zobrazením jména souboru (společně s datem a časem jeho vzniku), ze kterého byla tabulka naplněna. Nezobrazuje-li se jméno souboru, je tabulka prázdná.
+ 
+Záložka AUTOFORMÁT:
+Autoformát je v panelu použit při textovém řízení  a uplatňuje se jen tehdy, jsou-li vyplněny tabulky autoformátu. V panelu nedochází k vertikálnímu centrování, ale vždy je použita hodnota posunu z tabulky autoformátu. 
+Tabulky autoformátu jsou přístupné pouze pro FW 3.08 a vyšší a pouze tehdy, je-li v poli cíle vybrán některý z textových povelů. Způsob vyplňování tabulek pro autoformát jednořádkových a dvouřádkových nápisů je shodný se způsobem vyplňování interní tabulky autoformátu programu gBUSE0 - viz Nastavení. Stiskem pravého tlačítka myši nad tabulkami autoformátu  dojde k vyvolání místního roletového menu, pomocí kterého lze načíst obsah tabulek autoformátu ze souboru (*.afm, *.afc, *.afd, resp. *.hex) nebo obsah tabulek autoformátu do souboru uložit. Roletové menu rovněž umožňuje vymazat tabulky autoformátu (obojí nebo pouze 'jednořádkové ' čí 'dvouřádkové' samostatně). 
+
+Stiskem tlačítka NASTAVIT dojde k uplatnění výše popsaným způsobem nastavených parametrů. Naopak stiskem tlačítka ZRUŠIT se žádná ze změn provedených v okně Konfigurace neuplatní a zůstává v platnosti  předchozí konfigurace panelu.
+
+
+Poznámky k autoformátu:
+Autoformát je realizován ve verzi FW 3.08 nebo vyšší. Jedná se o autoformátováni tzv. otevřeného textu (textu neobsahujícího žádné řídicí příkazy, které by nastavili číslo fontu nebo mezeru mezi znaky) do pole cíle. Autoformátu je podroben takový text pouze tehdy, je-li vyplněna tabulka autoformátu. Není-li vyplněna, použije se předvolený font a předvolená mezera mezi znaky.
+Autoformátu jsou podrobeny otevřené texty přijaté z povelů zI..., zA...., aA.... . Otevřený text přijatý z povelu zN.... není autoformátu podrobován nikdy (vždy je zobrazen předvoleným fontem a předvolenou mezerou). Je to z toho důvodu, aby všechny nácestné zastávky, které tento povel nese, byly zobrazeny stejným typem písma.
+U verze FW 3.08 dochází k formátování pouze jednořádkových textů. Ve verzi FW 3.18 je možné zmíněnými povely kromě jednoho otevřeného textu (který je autoformátován jako nápis jednořádkový) poslat také dva otevřené texty vzájemně oddělené znakem LF (kód10 neboli 0AH), které budou autoformátovány jako nápis dvouřádkový.
+
+ 
+Nastavení
+Okno Nastavení dává tři možnosti jak ovlivnit činnosti programu gBUSE0.
+Jednou z možností je nastavení tvorby tzv.ekvivalentů (neboli nápisů na BS100 resp. BS230). Pro případ používání národních abeced (různých od češtiny a slovenštiny) umožňuje i volbu souboru s kódovací tabulkou, která zajistí správné převedení národní znaků na správné kódy do BS100 resp. BS230. Pro češtinu a slovenštinu má program gBUSE0 tabulku interní (volba kódové tabulky v okně Nastavení musí zůstat prázdná). Kromě tvorby ekvivalentů je nastavení správné kódovací tabulky také nezbytné pro správné načítání dat  ze souborů *.bbd resp. *.bbf.  
+Další možností je modifikace tabulek autoformátování jednořádkových a dvouřádkových nápisů pro editor cílů, editor linek a editor zastávek. Vyplnění tabulky je odvislé od realizovaných typů fontů. Princip automatického formátování spočívá v tom, že program příslušný text převede do obrazů podle čísla fontu a mezery mezi znaky uvedené na prvním řádku tabulky. Zjistí délku obrazu v bodech a pokud se vejde do zobrazovacího pole použije tuto kombinaci a přidá k ní i hodnotu posunu ze stejného řádku tabulky. Pokud se ovšem obraz textu do zobrazovacího pole nevejde, pokračuje postupně na další řádky tabulky, až dojde na kombinaci, kdy se text do zobrazovacího pole vejde. Pokud se nevejde nikdy, použijí se parametry posledního vyplněného řádku tabulky. Tento princip používání hodnot v tabulkách autoformátu naznačuje, jakým způsobem ji vyplnit (je nutno začít od největšího fontu s největší mezerou mezi znaky, postupně zmenšovat mezeru mezi znaky a pak přejít na menší font atd.). Ke každému řádku v autoformátovací tabulce lze přiřadit hodnotu posunu. Pod formátovací tabulkou je volba Vertikálně centrovat. Je-li zaškrtnuta, bude text (zobrazený fontem s mezerou mezi znaky vybranými výše popsaným postupem) vycentrován do zobrazovacího okna ve vertikálním směru. Pokud volba Vertikálně centrovat  zaškrtnuta není, bude text zobrazen s posuvem (vůči horní hraně zobrazovacího okna) určeným ze stejného řádku tabulky, ze kterého vyčetl font a mezeru mezi znaky.Stisknutím pravého tlačítka myši nad tabulkami autoformátu  dojde k vyvolání místního roletového menu, pomocí kterého lze načíst obsah tabulek autoformátu ze souboru (*.afm) nebo obsah tabulek autoformátu do souboru uložit. Roletové menu rovněž umožňuje vymazat tabulky autoformátu (obojí nebo pouze 'jednořádkové ' čí 'dvouřádkové' samostatně).
+V dolní části okna Nastavení je zaškrtávací políčko nastavující režim práce editoru cílů/linek/zastávek bez nutnosti potvrzovat provedené změny tlačítkem ULOŽ – viz Editor cílů. 
+Aby se změny provedené v nastaveném chování programu gBUSE0 uplatnily, je nutné je potvrdit stiskem tlačítka NASTAVIT. Veškerá nastavení si program gBUSE0 uschová a při každém novém spuštění se jimi bude řídit.
+
+
+Poznámka:
+Je nutno rozlišovat mezi tabulkami autoformátu v okně Nastavení a tabulkami autoformátu na záložce AUTOFORMÁT v okně Konfigurace.
+Tabulky autoformátu v okně Nastavení určují interní autoformátování editorů a uplatní se při tvorbě dat uložených v databázi panelu, což je při tzv. kódovém řízení panelu. Obsah těchto tabulek se do databáze panelu neukládá, při činnosti panelu se již neuplatňují (Uplatňují jen při přípravě či editaci nápisů v rámci programu gBUSE0.) Jsou to tabulky určující chování programu gBUSE0.     
+Naproti tomu tabulky autoformátu v okně Konfigurace jsou tabulky, které se ukládají do databáze panelu a uplatní se při činnosti panelu při tzv. textovém řízení (proto jsou přístupné k nastavení pouze je-li povolen některý z textových povelů). Na chování programu gBUSE0 tyto tabulky nemají žádný vliv.
+
+
+
+ 
+Informace o souborech
+Databáze panelu obsahuje vždy konfigurační tabulku a tabulku fontů a dále (podle typu a použití panelu) různé kombinace databází linek a cílů (resp. i zastávek). Je nutno rozlišovat databázi trojmístných cílů a databázi čtyřmístných cílů, jejichž existence je vyvolána tím, že každé z nich jsou po sběrnici IBIS posílány jiným povelem.  V konečném výsledku se však jejich zobrazování na panelu neliší.
+Rozlišení typů souborů:
+*.hex	soubor s databází panelu
+*.fnt	soubor s tabulkou fontů
+*.lin	soubor s databází linek
+*.cil	soubor s databází trojmístných cílů
+*.ci4	soubor s databází čtyřmístných cílů
+*.dru	soubor s databází zastávek (v balíku GEBUSE nazývanou databází druhých řádků)
+*.afm	soubor s tabulkami autoformátu (oběma)
+*.afc	soubor s tabulkou autoformátu  ('jednořádkové')
+*.afd	soubor s tabulkou autoformátu  ('dvouřádkové')
+*.kod	soubor s kódovou tabulkou
+*.aL	soubor s formátovacími řetězci
+*.LA	soubor s formátovacími řetězci    
+*.txt	soubor s texty pro databázi cílů, linek nebo zastávek 
+*.cl	”importový” soubor cílů
+*.zs	”importový” soubor zastávek
+*.bbf	databáze řídicího počítače BS100 (verze 1.x a 2.x)
+*.bbd	databáze řídicího počítače BS100 (verze 3.x) resp. ovládací jednotky BS230
+*.tbk	soubor s kódovací tabulkou zabezpečující správný převod národních znaků do databáze BS100 resp.BS230 
+*.bin	soubor s databází panelu se specifickým použitím
+
+Základním souborem je soubor databáze panelu (soubor typu *.hex). Databáze panelu obsahuje jednak nutné konfigurační údaje o vlastnostech panelu, pro který je určena a  tabulku fontů určující zobrazované znaky. Dále pak obsahuje databázi linek a databázi cílů (to v případě kombinovaného panelu pro zobrazení linky i cíle) nebo pouze některou z nich (v případě panelu jednoúčelového pro zobrazení pouze linky nebo pouze cíle). Program gBUSE0 umožňuje soubor databáze panelu vytvořit, umožňuje ho zpětně načíst a prohlížet jeho obsah nebo v něm provést úpravy a pak vytvořit soubor upravený. Typy souborů *.fnt, *,lin, *.cil, *.dru (avšak i *.afc, *.afd, *.kod, *.aL, *.LA) zajišťují návaznost na programový balík GEBUSE (verze DOS).  Avšak i zde najdou své uplatnění. 
+Editor cílů/linek/zastávek umožňuje i načtení cílů/linek/zastávek z textových souborů *.txt s využitím autoformátu.  Nebo načtení již naformátovaných cílů nebo linek čí zastávek buď z předem připravených souborů  *.cil (resp. *.ci4) nebo *.lin, či *.dru, avšak také z již hotové databáze panelu, tj.ze souboru *.hex. Možnost vstupu cílů/linek/zastávek z předem připravených souborů by mělo být hojně využíváno ke vstupu speciálních cílů obsahující testy panelu.
+
+Poznámka k souborům *.aL, *.LA
+Oba typy souborů obsahují data ve stejném formátu. Budeme-li respektovat historické okolnosti (dané existencí programového balíku GEBUSE), je pro vnější panely upřednostňováno používání souboru typu  *.aL,  zatímco pro vnitřní panely používání souboru typu *.LA. (Je to vhodné dodržovat i nadále, neboť repertoár řídicích příkazů pro vnější a vnitřní panely není obecně stejný.)
+
+Poznámka k souboru *.txt
+Program gBUSE0 umí načítat i textové soubory vyžívané programovým balíkem GEBUSE, tj. řádek začínal znakem @ (který byl předřazen úvodnímu číslu) a texty byly v kódu Kamenických.
+Textové soubory *.txt běžně používané programem gBUSE0 jsou v kódování Windows a úvodní číslo musí začínat číslicí (nikoliv znakem @).
+
+ 
+
+Poznámka k souboru *.bin
+Soubor typu *.bin je speciálním formátem databáze panelu. Lze říci, že všude tam, kde se v tomto návodu píše o souboru *.hex, lze alternativně k němu použít soubor typu *.bin.     
+
+
+
+Dobrá rada:
+Pokud dojde při tvorbě databáze panelu k chybovému hlášení oznamujícímu přetečení paměti panelu nebo oznamujícímu přetečení adresy tabulky, není možné vygenerovat soubor *.hex  (přesněji vygenerovaný soubor *.hex bude neúplný). Ukončením programu  gBUSE0  přijdete o vloženou práci do tvorby dat,  která se nyní do panelu nevejdou. V takovém případě je vhodné postupně pomocí jednotlivých editorů uložit data rozloženě do souborů *.fnt, *.lin, *.cil resp. *.ci4, případně i *.dru.
+
+	
+ 
+Verze firmware vnějších panelů 
+
+Je nutno rozlišovat dvě řady panelů:
+  - panely řady BS110 (panely se zářivkovým osvětlením)
+  - panely řady BS210 (panely s technologií DOT-LED, tj. s LED diodou u každého bodu)
+
+Vlastnosti panelu (obou řad) jsou určeny tím, jaká verze firmware (FW) je v něm osazena.   
+Proto také chování programu gBUSE0 a především rozsah možností jak nastavení panelu, tak zobrazování na něm je rozdílný pro různé verze FW v panelu.
+Verze FW určené pro panely řady BS110 začínají jedničkou nebo dvojkou; verze FW pro panely řady BS210 začínají trojkou.
+Do panelů BS110 s verzí FW začínající jedničkou lze nahrát pouze data připravená pro FW 1.6. Tato data nelze nahrát do panelů BS110 s verzí FW začínající dvojkou, ani do panelů BS210. Naopak data připravená pro kteroukoliv vyšší verzi  FW lze nahrát jak do panelů BS110 (s verzí FW začínající dvojkou), tak i do panelů BS210. Pokud data obsahují nastavení nebo funkce, které jsou typické pro vyšší verzi FW, než je osazena v panelu, nebudou data v panelu fungovat ve všech směrech správně.  
+
+Upozornění:
+Připravená data neobsahují žádnou informaci o verzi FW, pro kterou byla připravena. Pokud tedy data nevyužívají některou z vlastností typickou pro danou vyšší verzi FW, program gBUSE0 nemusí při zpětném načítání dat nastavit opětně tutéž verzi FW, která byla nastavena při tvorbě dat. Nastaví takovou, která je nutná k realizaci nastavení a funkcí použitých v daných datech. Obecně to může být verze nižší než verze nastavená při ukládání dat do souboru. 
+(V tomto upozornění pochopitelně pomíjíme verze FW začínající jedničkou a hovoříme pouze o všech verzích vyšších.)  
+
+Jednotliví reprezentanti verzí FW jsou v okně Konfigurace programu gBUSE0 seřazeny vzestupně tak, že vyšší verze dává vždy panelu větší možnosti.
+Program gBUSE0 umožňuje nastavit následující reprezentanty FW panelu
+(ve stručné charakteristice jsou uváděny jen vlastnosti, které má verze navíc vůči předcházející)
+
+1.6	Svým způsobem výjimečná verze.
+Reprezentuje všechny tzv. “jedničkové“ verze FW panelů BS110.
+(Pro panely řady BS210 vůbec nelze použít). 
+Stručná charakteristika		- má pouze pole linky a pole cíle
+                                     	- umí pouze trojmístné cíle (z...) a trojmístné linky (l...)
+
+2.11	Základní tzv. “dvojková“ verze 
+Stručná charakteristika:	- má pouze pole linky a pole cíle
+	- umí trojmístné (z...) i čtyřmístné cíle (zC....)
+	- umí trojmístné (l...)  i čtyřmístné linky (lA.... resp. aL....)
+
+2.13	Stručná charakteristika:	- kromě pole linky a pole cíle má i pole zastávky
+	- umí povely pro nácestné zastávky (zD..., zN....)
+
+2.15	Svými vlastnostmi reprezentuje všechny vyšší verze pro BS110
+	a současně reprezentuje nejnižší verze pro BS210 (tj. používá se pro tvorbu dat pro BS210 s FW nižší než 3.08) 
+Stručná charakteristika:	- umí řídicí příkaz w (potlačení zobrazování zastávky)
+
+3.08	Stručná charakteristika:	- umí řídicí příkazy x (prolínání) a o (výmaz)
+	- umí autoformát otevřeného textu v povelech zI..., zA..., aA...
+
+3.18		Stručná charakteristika	- umí povel kA... (číslo pořadí)
+
+
+ 
+Poznámka:
+Je potřeba upozornit, že FW verze 3.12 až 3.17 (včetně) mají některé specifické vlastnosti a jsou proto určeny pouze pro jednoúčelová použití (pro účel, pro který byly vytvořeny).
+
+
+POZOR:
+Po ukončení generace výstupního souboru (*.hex resp. *.bin) může dojít k hlášení Upozornění pro panely BS110. Tato upozornění jsou dvě:
+Přetečení adresy tabulky zastávek.
+Nastane v případě že, použijeme-li konfiguraci panelu obsahujícího tři pole (pole linky, pole cíle a pole zastávky) a při velkém počtu linek a cílů může dojít k situaci, kdy tabulka zastávek začíná až na druhé stránce paměti. Firmware v panelech BS110 bohužel tuto situaci nedokáže obsloužit, proto program gBUSE0 situaci upozorňuje. Pokud generujeme data pouze pro  panely řady BS210, je vše v pořádku. Bude-li však takovýto soubor nahrán do panelu BS110, nebudou v něm fungovat zastávky. Jediná cesta opravy takového souboru pro BS110 je ve vypuštění některých cílů resp. linek. 
+Přetečení paměti panelu BS110.
+Nastane v případě že, vygenerovaná databáze zabírá více než 128kB paměti. Pro panely řady BS210 je opět vše v pořádku. Do paměti panelů řady BS110 se však taková databáze nevejde. Proto také zmíněné upozornění.
+
+
+	
+ 
+MNEMO JAZYK 
+
+Mnemo jazyk slouží k snadnému mnemotechnickému zápisu dat ve tvaru, jak jim rozumí panel. Tato data obsahují kromě vlastních zobrazovaných znaků také řadu řídicích kódů, které panelu říkají jakým způsobem má tato data zobrazit. Každý z těchto řídicích kódů má v mnemo jazyku odpovídající příkaz. Většina řídicích příkazů se v mnemo jazyku zapisuje malým písmenem resp. malým písmenem bezprostředně následovaným číslem. Výjimkou jsou formátovací a ukončovací příkazy, které se píší velkými písmeny (FF,LF,VT,CR). Vlastní zobrazovaný text je vždy uzavřen mezi apostrofy. Zobrazovaný znak lze také zapsat pomocí jeho dekadického kódu (např. #251). 
+Definice prvků mnemo jazyka:
+
+ 'text' 	-  textový řetězec
+Zobrazované znaky musí být vždy uzavřeny mezi apostrofy. Z toho vyplývá, že nelze jako 	zobrazovaný znak zapsat znak apostrof - viz pozn.1
+
+ #kód	-  kód znaku 
+Zobrazovaný znak lze zapsat také pomocí jeho dekadického kódu. Dekadický kód zobrazovaných znaků je číslo v rozsahu <32,175> nebo <240,255>, před kterým je nutné uvést znak #
+
+
+řídící příkazy:
+ lccc	-  levý sloupec okna
+Nastaví levou hranu aktuálního zobrazovacího okna od sloupce, jehož číslo je v příkazu uvedeno (viz pozn.2). Hodnota ccc udává číslo sloupce a  může být v rozsahu 1 až 240. 
+ pccc	-  pravý sloupec okna
+Nastaví pravou hranu aktuálního zobrazovacího okna na sloupec, jehož číslo je v příkazu uvedeno. (viz pozn.2). Hodnota ccc udává číslo sloupce a  může být v rozsahu 1 až 240.
+ hcc	-  horní řádek okna
+Nastaví dolní hranu aktuálního zobrazovacího okna na řádek, jehož číslo je v příkazu uvedeno. (viz pozn.2). Hodnota cc udává číslo řádku a  může být v rozsahu 1 až 32.  
+ dcc 	-  dolní řádek okna
+Nastaví dolní řádek aktuálního zobrazovacího okna na řádek, jehož číslo je v příkazu uvedeno. (viz pozn.2). Hodnota cc udává číslo řádku a  může být v rozsahu 1 až 32.
+ c	-  základní velikost okna
+Nastaví rozměry aktuálního zobrazovacího okna podle údajů nastavených v konfiguraci panelu (tzn. na původní hodnoty).
+ fc	-  výběr fontu
+Určuje číslo fontu, kterým budou zobrazeny všechny zobrazované znaky uvedené za tímto řídicím příkazem. Hodnota c může být v rozsahu 0 až 15.
+ mc	-  mezera mezi znaky
+Určuje, jak velká (kolik sloupců) bude mezera mezi zobrazovanými znaky. Pokud před tímto řídicím příkazem byl již nějaký zobrazovaný znak uveden, bude tento řídící příkaz určovat i mezeru před prvním zobrazovaným znakem za příkazem m uvedeným. Hodnota c může být v rozsahu 0 až 15.
+ ycc	-  posun textu dolů
+Určuje jak velký bude posun zobrazovaných znaků (uvedených za řídícím příkazem y) vůči horní hraně aktuálního zobrazovacího okna.  Hodnota cc může být v rozsahu 0 až 31.
+ sccc	-  zobrazení textu od sloupce
+Způsobí, že následující zobrazované znaky budou začínat na sloupci, jehož číslo je uvedeno v řídicím příkazu s. Hodnota ccc může být v rozsahu 1 až 240.
+ i	-  inverze nastaveného okna
+Provede inverzi dat naformátovaných v aktuálním zobrazovacím okně.
+
+ 
+ zccc	-  doba zobrazení textu
+Příkaz LF (s výjimkou prvního) vyvolá zobrazení na určitý časový interval. Pokud před vyvoláním příkazu LF nebyl v datech použit řídicí příkaz z, je jeho velikost dána hodnotou v konfiguraci panelu. Použití řídicího příkazu z tuto hodnotu nastavuje individuálně. Hodnota ccc udává dobu zobrazení ve stovkách milisekund a může nabývat hodnot 0 až 239 (tj. 0,1 až 23,9 s).Platí z0 = z1 (0,1s).
+ b 	-  blokování povelů 
+Způsobí zablokování všech povelů IBIS, kromě toho, který vyvolal data obsahující řídicí příkaz b. Teprve až budou nezablokovaným povelem IBIS vyvolána data, která řídicí příkaz b neobsahují, obnoví se zpracovávání ostatních povelů IBIS.
+Toho se využívá pro případy, kdy na panelu s kombinovaným zobrazením  linka+cíl resp. linka+cíl+zastávka, chceme některé zobrazovací pole roztáhnout přes celý panel a potřebujeme zamezit, aby nám část nového nápisu přepsal nápis jiný, vyvolaný jiným povelem. (viz pozn.3). 
+ w	-  blokování povelů pro nácestné zastávky
+Dojde k potlačení zobrazování zastávek přijatých povelem zD.... . Příkaz w je využíván na panelech s kombinovaným zobrazením linka+cíl+zastávka nebo cíl+zastávka v případech, že se chce zobrazit cíl roztažený přes pole zastávky.(viz pozn.3). 
+ n	-  rotace okna nahoru
+Provede rotaci aktuálního okna nahoru.
+ r	-  rotace okna nahoru
+Provede rotaci aktuálního okna vlevo.
+ o	-  výmaz celého zobrazovacího pole
+Provede výmaz aktuálního zobrazovacího pole, tj. převede všechny jeho body do černé.
+ x	-  zapnutí prolínání s dřívějším obsahem zobrazovacího pole  (viz pozn.4)
+Od použití řídicího příkazu x (až do použití FF, LF, VT, CR) dochází k přidávání zobrazovaných znaků tím stylem, že do zobrazovacího pole jsou z přidávaných znaků přepisovány jen body ve žluté; body v černé zobrazení neovlivní. (Dochází k prolínání obrazů.) 
+
+ FF	-  formátování textu
+Provede naformátování předcházejícího textu (od předcházejícího FF resp. LF) - s respektováním řídicích příkazů -  do aktuálního zobrazovacího okna.  
+ LF	-  přechod na nový řádek
+Provede naformátování předchozího textu (stejně jako FF) a provede zobrazení aktuálního okna na panelu na určitou dobu - ta je dána buď předvolenou hodnotou intervalu v konfiguraci panelu nebo parametrem v řídicím příkazu z, pokud již byl zpracován. Výjimkou je v tomto případě první výskyt LF v datech, který způsobí pouze naformátování dat, nikoliv zobrazení. K zobrazování dojde až od druhého LF v datech.    
+ VT	-  opakování zobrazení
+Provede naformátování dat a provede jejich zobrazení na určitou dobu (viz LF) a po jejím uplynutí způsobí skok v datech zpět za druhý LF od začátku dat a pokračuje v jejich zpracovávání. Prakticky tím dojde k vytvoření cyklu ve zpracování dat, takže se zobrazování stále opakuje.
+ CR	-  ukončení 
+Provede naformátování předcházejícího text a jeho zobrazení. Poté dojde k ukončení zpracovávání dat - obraz na panelu takto zobrazený se již nezmění (dokud nepřijde  povelem IBIS jiný kód).
+
+
+ 
+
+Poznámky k řídicím příkazům:
+pozn.1:  
+Je-li potřeba zobrazit znak apostrof, je nutné ho uvést jako znak určený svým dekadickým kódem tj. zapsat ho ve tvaru #39.  Příklad: Slovo d'Artagnan do mnemo jazyka zapíšeme 'd' #39 'Artagnan'.
+pozn.2:
+Řádky resp. sloupce zadávané v příkazech l, p, d, h jako hraniční řádky aktuálního okna jsou vždy součástí tohoto okna. Číslování řádků a sloupců  začíná v levém dolním rohu panelu a počítá se doprava a nahoru počínaje od 1. (Bod v levém dolním rohu panelu leží na řádku 1 ve sloupci 1.)
+pozn.3:
+Roztažení okna přes celý panel je nutno docílit použitím dalších řídicích příkazů, samo blokování povelů (ani příkaz b, ani příkaz w)  rozměry zobrazovacího okna neovlivní.
+pozn.4:
+Příkazy o a x  jsou realizovány v FW verzi 3.08 a vyšší.
+pozn.5:
+Program gBUSE0 rozděluje řídicí příkazy do jednotlivých řádků - vždy až po následující LF (nebo koncový VT resp. CR). Znamená to, že každý řádek  - kromě prvního (tedy od druhého dále) - představuje jedno zobrazení (při použití konstrukce střídajících se nápisů). Pro zobrazení na panelu simulujícím skutečný panel je pak použita jen část řídicích příkazů po právě aktuální řádek (včetně). To také vysvětluje, proč se neindikuje “Příliš dlouhý text!“, přestože se vyskytuje, avšak až na řádku resp. řádcích za právě aktuálním.  
+
