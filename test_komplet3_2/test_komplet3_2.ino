@@ -104,7 +104,38 @@ void setup() {
   server.begin();
 }
 
+void connectToWiFi() {
+  Serial.print("Připojování k WiFi sítě: ");
+  Serial.println(ssid_sta);
+
+  WiFi.begin(ssid_sta, password_sta);
+
+  // Čekání na připojení (max 10 sekund)
+  unsigned long startAttemptTime = millis();
+
+  while (WiFi.status() != WL_CONNECTED && millis() - startAttemptTime < 10000) {
+    delay(1000);
+    Serial.print(".");
+  }
+
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("");
+    Serial.println("Chyba: Nelze se připojit k WiFi.");
+  } else {
+    Serial.println("");
+    Serial.println("WiFi připojena.");
+    Serial.print("IP adresa: ");
+    Serial.println(WiFi.localIP());
+
+    // Inicializace NTP klienta
+    timeClient.begin();
+  }
+}
+
 void loop() {
+  if(!wifi_connected){
+      connectToWiFi();
+  }
   // vytvoření "asynchroního" delaye 1s
   if (cas_delay >= 1000) {
     cas_delay = 0;
