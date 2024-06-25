@@ -29,7 +29,6 @@ int opakovatPripojeni = 0;
 String slovoHEX = "";
 boolean led_state = true;
 
-String debug = "";
 boolean bootWifi = false;  //proměna pro zaznamenání, že při počátečním zapnutím byla wifi a byly získány data z NTP serveru pro běh času
 
 
@@ -338,10 +337,8 @@ void loop() {
         }
         if (bootWifi) {
           slovoHEX = stringToHex("zI " + getTime());
-          debug = getTime();
         } else {
           slovoHEX = stringToHex("zI WIFI!");
-          debug = "WIFI!: " + getTime();
         }
       } else {
         opakovatPripojeni = 0;
@@ -398,10 +395,8 @@ void loop() {
   if (WiFi.status() == WL_CONNECTED) {
     timeClient.update();
     wifi_connected = true;
-    // debug += " wifi status true";
   } else {
     wifi_connected = false;
-    // debug += " wifi status false";
   }
 
   // Obsluha webového serveru
@@ -546,8 +541,7 @@ void handleRoot() {
     "    x.type = 'password';"
     "  }"
     "}"
-    "</script></head><body>Debug: <b>"
-    + debug + "</b><h1>Nastavení WIFI</h1>"
+    "</script></head><body><h1>Nastavení WIFI</h1>"
     + currentTime + "<form action=\"/save\" method=\"POST\">"
                     "ssid_sta: <input type=\"text\" name=\"ssid_sta\" value=\""
     + ssid_sta + "\"><br>"
